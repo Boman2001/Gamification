@@ -1,24 +1,30 @@
-
 using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using Dtos;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UiController : MonoBehaviour
 {
-    [SerializeField] public Button RegisterButton;
-    [SerializeField] public TMP_InputField NameInput;
-    [SerializeField] public TMP_InputField PasswordInput;
-    [SerializeField] public TMP_Text Toast;
+    [FormerlySerializedAs("RegisterButton")] [SerializeField]
+    public Button registerButton;
+    
+    [FormerlySerializedAs("NameInput")] [SerializeField]
+    public TMP_InputField nameInput;
+    
+    [FormerlySerializedAs("PasswordInput")] [SerializeField]
+    public TMP_InputField passwordInput;
+    
+    [FormerlySerializedAs("Toast")] [SerializeField]
+    public TMP_Text toast;
 
     // Start is called before the first frame update
     void Start()
     {
-        RegisterButton.onClick.AddListener(Register);
+        registerButton.onClick.AddListener(Register);
     }
 
     // Update is called once per frame
@@ -31,8 +37,8 @@ public class UiController : MonoBehaviour
     {
         var registerDto = new RegisterDto()
         { 
-            Email = NameInput.text,
-            Password = PasswordInput.text
+            Email = nameInput.text,
+            Password = passwordInput.text
         };
         var obj = JsonUtility.ToJson(registerDto).ToString();
         StartCoroutine(Post("http://localhost:5000/api/v1/auth/register",obj));
@@ -50,20 +56,21 @@ public class UiController : MonoBehaviour
         
         if (request.isNetworkError || request.isHttpError)
         {
-            StartCoroutine(showToast("Error",1));
+            var responseText = request.downloadHandler.text;
+            StartCoroutine(ShowToast($"Error {responseText}",1));
         }
         else
         {
             string responseText = request.downloadHandler.text;
-            StartCoroutine(showToast("Success",1));
+            StartCoroutine(ShowToast($"Success {responseText}",1));
         }
     }
 
-    IEnumerator showToast(string text,
+    IEnumerator ShowToast(string text,
         int duration)
     {
-        Toast.enabled = true;
-        Toast.text = text;
+        toast.enabled = true;
+        toast.text = text;
         float counter = 0;
         while (counter < duration)
         {
@@ -71,7 +78,6 @@ public class UiController : MonoBehaviour
             yield return null;
         }
         
-        Toast.enabled = false;
-        yield break;
+        toast.enabled = false;
     }
 }
