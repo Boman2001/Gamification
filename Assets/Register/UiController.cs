@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Text;
 using Dtos;
@@ -57,7 +58,22 @@ public class UiController : MonoBehaviour
         if (request.isNetworkError || request.isHttpError)
         {
             var responseText = request.downloadHandler.text;
-            StartCoroutine(ShowToast($"Error {responseText}",1));
+            try
+            {
+                var response = JObject.Parse(responseText);
+                var errorMessage = responseText;
+            
+                if (response["message"] != null)
+                {
+                    errorMessage = response["message"].ToString();
+                }
+                
+                StartCoroutine(ShowToast($"Error {errorMessage}", 1));
+            }
+            catch (Exception e)
+            {
+                StartCoroutine(ShowToast($"Error {responseText}", 1));
+            }
         }
         else
         {
@@ -66,7 +82,7 @@ public class UiController : MonoBehaviour
             if (response["token"] != null)
             {
                 PlayerPrefs.SetString("token", response["token"].ToString());
-                StartCoroutine(ShowToast($"Success {responseText}",1));
+                StartCoroutine(ShowToast($"Success!",1));
             }
             else
             {
