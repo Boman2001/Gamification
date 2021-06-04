@@ -26,6 +26,7 @@ public class UiController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Todo: If Token is set and valid automatically log in and continue, wss gwn een /me en als die faalt log uit
         registerButton.onClick.AddListener(Register);
     }
 
