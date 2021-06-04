@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Text;
 using Dtos;
+using Newtonsoft.Json.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -30,7 +31,6 @@ public class UiController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
     
     void Register()
@@ -61,8 +61,17 @@ public class UiController : MonoBehaviour
         }
         else
         {
-            string responseText = request.downloadHandler.text;
-            StartCoroutine(ShowToast($"Success {responseText}",1));
+            var responseText = request.downloadHandler.text;
+            var response = JObject.Parse(responseText);
+            if (response["token"] != null)
+            {
+                PlayerPrefs.SetString("token", response["token"].ToString());
+                StartCoroutine(ShowToast($"Success {responseText}",1));
+            }
+            else
+            {
+                StartCoroutine(ShowToast($"Error Token not found",1));
+            }
         }
     }
 
