@@ -1,18 +1,16 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 using Dtos;
 using Newtonsoft.Json.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.Networking;
-using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class UiController : MonoBehaviour
+public class LoginUiController : MonoBehaviour
 {
     [FormerlySerializedAs("SlechtHorendButton")] [SerializeField]
     public Button hearingImpairedButton;
@@ -23,14 +21,8 @@ public class UiController : MonoBehaviour
     [FormerlySerializedAs("GebruikerButton")] [SerializeField]
     public Button userButton;
     
-    [FormerlySerializedAs("AccountButton")] [SerializeField]
-    public Button accountButton;
-    
     [FormerlySerializedAs("EmailInput")] [SerializeField]
     public TMP_InputField emailInput;
-    
-     [FormerlySerializedAs("NameInput")] [SerializeField]
-     public TMP_InputField nameInput;
         
     [FormerlySerializedAs("PasswordInput")] [SerializeField]
     public TMP_InputField passwordInput;
@@ -41,40 +33,33 @@ public class UiController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.DeleteAll();
         //Todo: If Token is set and valid automatically log in and continue, wss gwn een /me en als die faalt log uit
         hearingImpairedButton.onClick.AddListener(async () =>
         {
-            Register(ScenePref.Hearing);
+            Login(ScenePref.Hearing);
         });
         
         sightImpairedButton.onClick.AddListener(async () =>
         {
-           Register(ScenePref.Seight);
+            Login(ScenePref.Seight);
         });
         
         userButton.onClick.AddListener(async () =>
         {
-            Register(ScenePref.Vistor);
-        });
-        
-        accountButton.onClick.AddListener(() =>
-        { 
-            GoToScene(ScenePref.Account);
+            Login(ScenePref.Vistor);
         });
     }
 
-    void Register(ScenePref scenePref)
+    void Login(ScenePref scenePref)
     {
-        var registerDto = new RegisterDto()
+        var loginDto = new LoginDto()
         { 
             Email = emailInput.text,
-            Password = passwordInput.text,
-            Username = nameInput.text
+            Password = passwordInput.text
         };
         
-        var obj = JsonUtility.ToJson(registerDto).ToString();
-        StartCoroutine(Post("http://localhost:5000/api/v1/auth/register", obj, scenePref));
+        var obj = JsonUtility.ToJson(loginDto).ToString();
+        StartCoroutine(Post("http://localhost:5000/api/v1/auth/login", obj, scenePref));
     }
     
     IEnumerator Post(string url, string bodyJsonString, ScenePref sceneOnSuccess)
@@ -148,12 +133,6 @@ public class UiController : MonoBehaviour
     void GoToScene(ScenePref scenePref)
     {
         StartCoroutine(ShowToast($" {scenePref}", 100000));
-        
-        switch (scenePref)
-        {
-            case ScenePref.Account:
-                SceneManager.LoadScene("Login");
-                break;
-        }
     }
+
 }
