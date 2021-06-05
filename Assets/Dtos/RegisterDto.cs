@@ -7,5 +7,6 @@ namespace Dtos
     {
         public string Email;
         public string Password;
+        public string Username;
     }
 }
