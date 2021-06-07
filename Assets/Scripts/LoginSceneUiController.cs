@@ -10,15 +10,15 @@ using UnityEngine.Networking;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class LoginUiController : MonoBehaviour
+public class LoginSceneUiController : MonoBehaviour
 {
-    [FormerlySerializedAs("SlechtHorendButton")] [SerializeField]
+    [FormerlySerializedAs("HearingImpairedButton")] [SerializeField]
     public Button hearingImpairedButton;
     
-    [FormerlySerializedAs("SlechtZiendButton")] [SerializeField]
+    [FormerlySerializedAs("SightImpairedButton")] [SerializeField]
     public Button sightImpairedButton;
     
-    [FormerlySerializedAs("GebruikerButton")] [SerializeField]
+    [FormerlySerializedAs("VisitorButton")] [SerializeField]
     public Button userButton;
     
     [FormerlySerializedAs("EmailInput")] [SerializeField]
@@ -34,20 +34,9 @@ public class LoginUiController : MonoBehaviour
     void Start()
     {
         //Todo: If Token is set and valid automatically log in and continue, wss gwn een /me en als die faalt log uit
-        hearingImpairedButton.onClick.AddListener(async () =>
-        {
-            Login(ScenePref.Hearing);
-        });
-        
-        sightImpairedButton.onClick.AddListener(async () =>
-        {
-            Login(ScenePref.Seight);
-        });
-        
-        userButton.onClick.AddListener(async () =>
-        {
-            Login(ScenePref.Vistor);
-        });
+        hearingImpairedButton.onClick.AddListener( () => { Login(ScenePref.Hearing); });
+        sightImpairedButton.onClick.AddListener( () => { Login(ScenePref.Seight); });
+        userButton.onClick.AddListener( () => { Login(ScenePref.Vistor); });
     }
 
     void Login(ScenePref scenePref)
@@ -84,11 +73,11 @@ public class LoginUiController : MonoBehaviour
                     errorMessage = response["message"].ToString();
                 }
                 
-                StartCoroutine(ShowToast($"Error {errorMessage}", 1));
+                //StartCoroutine(ShowToast($"Error {errorMessage}", 1));
             }
             catch (Exception e)
             {
-                StartCoroutine(ShowToast($"Error {responseText}", 1));
+                //StartCoroutine(ShowToast($"Error {responseText}", 1));
             }
         }
         else
@@ -97,29 +86,29 @@ public class LoginUiController : MonoBehaviour
             if (response["token"] != null)
             {
                 PlayerPrefs.SetString("token", response["token"].ToString());
-                StartCoroutine(ShowToast($"Success!",1));
+               //StartCoroutine(ShowToast($"Success!",1));
                 GoToScene(sceneOnSuccess);
             }
             else
             {
-                StartCoroutine(ShowToast($"Error Token not found",1));
+                //StartCoroutine(ShowToast($"Error Token not found",1));
             }
         }
     }
-
-    IEnumerator ShowToast(string text, int duration)
-    {
-        toast.enabled = true;
-        toast.text = text;
-        float counter = 0;
-        while (counter < duration)
-        {
-            counter += Time.deltaTime;
-            yield return null;
-        }
-        
-        toast.enabled = false;
-    }
+    //
+    // IEnumerator ShowToast(string text, int duration)
+    // {
+    //     toast.enabled = true;
+    //     toast.text = text;
+    //     float counter = 0;
+    //     while (counter < duration)
+    //     {
+    //         counter += Time.deltaTime;
+    //         yield return null;
+    //     }
+    //     
+    //     toast.enabled = false;
+    // }
     
     enum ScenePref
     {
@@ -132,7 +121,7 @@ public class LoginUiController : MonoBehaviour
     
     void GoToScene(ScenePref scenePref)
     {
-        StartCoroutine(ShowToast($" {scenePref}", 100000));
+        //StartCoroutine(ShowToast($" {scenePref}", 100000));
     }
 
 }

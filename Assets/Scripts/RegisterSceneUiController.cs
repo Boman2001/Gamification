@@ -12,15 +12,15 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class UiController : MonoBehaviour
+public class RegisterSceneUiController : MonoBehaviour
 {
-    [FormerlySerializedAs("SlechtHorendButton")] [SerializeField]
+    [FormerlySerializedAs("HearingImpairedButton")] [SerializeField]
     public Button hearingImpairedButton;
     
-    [FormerlySerializedAs("SlechtZiendButton")] [SerializeField]
+    [FormerlySerializedAs("SightImpairedButton")] [SerializeField]
     public Button sightImpairedButton;
     
-    [FormerlySerializedAs("GebruikerButton")] [SerializeField]
+    [FormerlySerializedAs("VisitorButton")] [SerializeField]
     public Button userButton;
     
     [FormerlySerializedAs("AccountButton")] [SerializeField]
@@ -43,37 +43,20 @@ public class UiController : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         //Todo: If Token is set and valid automatically log in and continue, wss gwn een /me en als die faalt log uit
-        hearingImpairedButton.onClick.AddListener(async () =>
-        {
-            Register(ScenePref.Hearing);
-        });
-        
-        sightImpairedButton.onClick.AddListener(async () =>
-        {
-           Register(ScenePref.Seight);
-        });
-        
-        userButton.onClick.AddListener(async () =>
-        {
-            Register(ScenePref.Vistor);
-        });
-        
-        accountButton.onClick.AddListener(() =>
-        { 
-            GoToScene(ScenePref.Account);
-        });
+        hearingImpairedButton.onClick.AddListener( () => { Register(ScenePref.Hearing); });
+        sightImpairedButton.onClick.AddListener( () => { Register(ScenePref.Seight); });
+        userButton.onClick.AddListener( () => { Register(ScenePref.Vistor); });
+        accountButton.onClick.AddListener(() => { GoToScene(ScenePref.Account); });
     }
 
     void Register(ScenePref scenePref)
     {
-        var registerDto = new RegisterDto()
-        { 
-            Email = emailInput.text,
-            Password = passwordInput.text,
-            Username = nameInput.text
+        var registerDto = new RegisterDto
+        {
+            Email = emailInput.text, Password = passwordInput.text, Username = nameInput.text
         };
-        
-        var obj = JsonUtility.ToJson(registerDto).ToString();
+
+        var obj = JsonUtility.ToJson(registerDto);
         StartCoroutine(Post("http://localhost:5000/api/v1/auth/register", obj, scenePref));
     }
     
@@ -153,6 +136,10 @@ public class UiController : MonoBehaviour
         {
             case ScenePref.Account:
                 SceneManager.LoadScene("Login");
+                break;
+            case ScenePref.Hearing:
+                PlayerPrefs.SetInt("UserType", 0);
+                SceneManager.LoadScene("Home");
                 break;
         }
     }

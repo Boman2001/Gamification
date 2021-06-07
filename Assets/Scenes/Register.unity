@@ -216,6 +216,57 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &142102490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 142102492}
+  - component: {fileID: 142102491}
+  m_Layer: 0
+  m_Name: UiController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &142102491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142102490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef096dccd68002741b17c693c66d85bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hearingImpairedButton: {fileID: 228436599}
+  sightImpairedButton: {fileID: 2096985119}
+  userButton: {fileID: 579300553}
+  accountButton: {fileID: 1198328211}
+  emailInput: {fileID: 2095754715}
+  nameInput: {fileID: 1128461674}
+  passwordInput: {fileID: 1601999046}
+  toast: {fileID: 1418819892}
+--- !u!4 &142102492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142102490}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 37.642727, y: -16.175653, z: -23.50784}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &228436597
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +280,7 @@ GameObject:
   - component: {fileID: 228436600}
   - component: {fileID: 228436599}
   m_Layer: 5
-  m_Name: ButtonSlechtHorend
+  m_Name: HearingImpairedButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -550,7 +601,7 @@ GameObject:
   - component: {fileID: 579300554}
   - component: {fileID: 579300553}
   m_Layer: 5
-  m_Name: ButtonBezoeker
+  m_Name: VisitorButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1590,7 +1641,7 @@ GameObject:
   - component: {fileID: 1198328212}
   - component: {fileID: 1198328211}
   m_Layer: 5
-  m_Name: ButtonAccount
+  m_Name: AccountButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3189,7 +3240,6 @@ GameObject:
   - component: {fileID: 1982678419}
   - component: {fileID: 1982678418}
   - component: {fileID: 1982678417}
-  - component: {fileID: 1982678416}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3197,26 +3247,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1982678416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1982678415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef096dccd68002741b17c693c66d85bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hearingImpairedButton: {fileID: 228436599}
-  sightImpairedButton: {fileID: 2096985119}
-  userButton: {fileID: 579300553}
-  accountButton: {fileID: 1198328211}
-  emailInput: {fileID: 2095754715}
-  nameInput: {fileID: 1128461674}
-  passwordInput: {fileID: 1601999046}
-  toast: {fileID: 1418819892}
 --- !u!114 &1982678417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3494,7 +3524,7 @@ GameObject:
   - component: {fileID: 2096985120}
   - component: {fileID: 2096985119}
   m_Layer: 5
-  m_Name: ButtonSlechtZiend
+  m_Name: SightImpairedButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
