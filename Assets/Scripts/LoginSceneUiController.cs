@@ -67,24 +67,20 @@ public class LoginSceneUiController : MonoBehaviour
         request.SetRequestHeader("Content-Type", "application/json");
         yield return request.SendWebRequest();
         
-        if (request.isNetworkError || request.isHttpError)
+        if (request.result == UnityWebRequest.Result.ConnectionError  || request.result == UnityWebRequest.Result.ProtocolError  )
         {
             var responseText = request.downloadHandler.text;
             try
             {
                 var response = JObject.Parse(responseText);
-                var errorMessage = responseText;
-            
+
                 if (response["message"] != null)
                 {
-                    errorMessage = response["message"].ToString();
                 }
-                
-                //StartCoroutine(ShowToast($"Error {errorMessage}", 1));
             }
             catch (Exception e)
             {
-                //StartCoroutine(ShowToast($"Error {responseText}", 1));
+                Debug.Log(e);
             }
         }
         else
@@ -93,29 +89,10 @@ public class LoginSceneUiController : MonoBehaviour
             if (response["token"] != null)
             {
                 DataStorageManager.Instance.RequestToken = response["token"].ToString();
-               //StartCoroutine(ShowToast($"Success!",1));
                 GoToScene(sceneOnSuccess);
-            }
-            else
-            {
-                //StartCoroutine(ShowToast($"Error Token not found",1));
             }
         }
     }
-    //
-    // IEnumerator ShowToast(string text, int duration)
-    // {
-    //     toast.enabled = true;
-    //     toast.text = text;
-    //     float counter = 0;
-    //     while (counter < duration)
-    //     {
-    //         counter += Time.deltaTime;
-    //         yield return null;
-    //     }
-    //     
-    //     toast.enabled = false;
-    // }
     
     enum ScenePref
     {

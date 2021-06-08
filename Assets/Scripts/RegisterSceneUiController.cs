@@ -71,7 +71,7 @@ public class RegisterSceneUiController : MonoBehaviour
         request.SetRequestHeader("Content-Type", "application/json");
         yield return request.SendWebRequest();
         
-        if (request.isNetworkError || request.isHttpError)
+        if (request.result == UnityWebRequest.Result.ConnectionError  || request.result == UnityWebRequest.Result.ProtocolError  )
         {
             var responseText = request.downloadHandler.text;
             try
@@ -88,7 +88,7 @@ public class RegisterSceneUiController : MonoBehaviour
             }
             catch (Exception e)
             {
-                StartCoroutine(ShowToast($"Error {responseText}", 1));
+                Debug.Log(e);
             }
         }
         else
