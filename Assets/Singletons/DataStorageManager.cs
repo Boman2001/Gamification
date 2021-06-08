@@ -42,29 +42,14 @@ public class DataStorageManager : MonoBehaviour
     {
         get
         {
-            switch (PlayerPrefs.GetInt("PlayerType"))
+            return PlayerPrefs.GetInt("PlayerType") switch
             {
-                case 0:
-                    return PlayerType.Hearing;
-                break;
-                
-                case 1:
-                    return PlayerType.Seight;
-                    break;
-
-                case 2:
-                    return PlayerType.Staff;
-                    break;
-
-                case 3:
-                    return PlayerType.Vistor;
-                    break;
-                
-                default:
-                    return PlayerType.Vistor;
-                    break;
-            }
-
+                0 => PlayerType.Hearing,
+                1 => PlayerType.Seight,
+                2 => PlayerType.Staff,
+                3 => PlayerType.Vistor,
+                _ => PlayerType.Vistor
+            };
         }
         set
         {
