@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Config;
 using Dtos;
+using Enum;
 using Newtonsoft.Json.Linq;
 using TMPro;
 using UnityEngine;
@@ -128,7 +129,7 @@ public class RegisterSceneUiController : MonoBehaviour
         Staff,
         Account
     }
-    
+
     void GoToScene(ScenePref scenePref)
     {
         StartCoroutine(ShowToast($" {scenePref}", 100000));
@@ -139,7 +140,19 @@ public class RegisterSceneUiController : MonoBehaviour
                 SceneManager.LoadScene("Login");
                 break;
             case ScenePref.Hearing:
-                PlayerPrefs.SetInt("UserType", 0);
+                DataStorageManager.Instance.PlayerType = PlayerType.Hearing;
+                SceneManager.LoadScene("Home");
+                break;
+            case ScenePref.Seight:
+                DataStorageManager.Instance.PlayerType = PlayerType.Seight;
+                SceneManager.LoadScene("Home");
+                break;
+            case ScenePref.Staff:
+                DataStorageManager.Instance.PlayerType = PlayerType.Staff;
+                SceneManager.LoadScene("Home");
+                break;
+            case ScenePref.Vistor:
+                DataStorageManager.Instance.PlayerType = PlayerType.Vistor;
                 SceneManager.LoadScene("Home");
                 break;
         }

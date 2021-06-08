@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using Dtos;
+using Enum;
 using Newtonsoft.Json.Linq;
 using TMPro;
 using UnityEngine;
@@ -27,9 +28,12 @@ public class HomeSceneUiController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hearingImpairedButton.text = PlayerPrefs.GetInt("UserType") switch
+        hearingImpairedButton.text = DataStorageManager.Instance.PlayerType switch
         {
-            0 => "the user is hearing impaired",
+            PlayerType.Hearing => "the user is hearing impaired",
+            PlayerType.Seight => "the user is seight impaired",
+            PlayerType.Vistor => "the user is a visitor",
+            PlayerType.Staff => "the user is staff",
             _ => hearingImpairedButton.text
         };
 
