@@ -36,9 +36,6 @@ public class RegisterSceneUiController : MonoBehaviour
         
     [FormerlySerializedAs("PasswordInput")] [SerializeField]
     public TMP_InputField passwordInput;
-    
-    [FormerlySerializedAs("Toast")] [SerializeField]
-    public TMP_Text toast;
 
     // Start is called before the first frame update
     void Start()
@@ -71,7 +68,7 @@ public class RegisterSceneUiController : MonoBehaviour
         request.SetRequestHeader("Content-Type", "application/json");
         yield return request.SendWebRequest();
         
-        if (request.result == UnityWebRequest.Result.ConnectionError  || request.result == UnityWebRequest.Result.ProtocolError  )
+        if (request.isNetworkError || request.isHttpError || request.error != null)
         {
             var responseText = request.downloadHandler.text;
             try
@@ -79,16 +76,16 @@ public class RegisterSceneUiController : MonoBehaviour
                 var response = JObject.Parse(responseText);
                 var errorMessage = responseText;
             
-                if (response["message"] != null)
+                if (response["message"]["errors"] != null)
                 {
                     errorMessage = response["message"].ToString();
                 }
                 
-                StartCoroutine(ShowToast($"Error {errorMessage}", 1));
+                StartCoroutine(PopupController.Instance.ShowToast($"Error {errorMessage}", 1, PopupController.MessageType.Error));
             }
             catch (Exception e)
             {
-                Debug.Log(e);
+                StartCoroutine(PopupController.Instance.ShowToast($"Error {request.error}", 10, PopupController.MessageType.Information));
             }
         }
         else
@@ -97,30 +94,16 @@ public class RegisterSceneUiController : MonoBehaviour
             if (response["token"] != null)
             {
                 DataStorageManager.Instance.RequestToken = response["token"].ToString();
-                StartCoroutine(ShowToast($"Success!",1));
+                StartCoroutine(PopupController.Instance.ShowToast($"Success!",1, PopupController.MessageType.Success));
                 GoToScene(sceneOnSuccess);
             }
             else
             {
-                StartCoroutine(ShowToast($"Error Token not found",1));
+                StartCoroutine(PopupController.Instance.ShowToast($"Error Token not found",1, PopupController.MessageType.Error));
             }
         }
     }
 
-    IEnumerator ShowToast(string text, int duration)
-    {
-        toast.enabled = true;
-        toast.text = text;
-        float counter = 0;
-        while (counter < duration)
-        {
-            counter += Time.deltaTime;
-            yield return null;
-        }
-        
-        toast.enabled = false;
-    }
-    
     enum ScenePref
     {
         Hearing,
@@ -132,7 +115,7 @@ public class RegisterSceneUiController : MonoBehaviour
 
     void GoToScene(ScenePref scenePref)
     {
-        StartCoroutine(ShowToast($" {scenePref}", 100000));
+        StartCoroutine(PopupController.Instance.ShowToast($" {scenePref}", 10, PopupController.MessageType.Success));
         
         switch (scenePref)
         {

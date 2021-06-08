@@ -67,7 +67,7 @@ public class LoginSceneUiController : MonoBehaviour
         request.SetRequestHeader("Content-Type", "application/json");
         yield return request.SendWebRequest();
         
-        if (request.result == UnityWebRequest.Result.ConnectionError  || request.result == UnityWebRequest.Result.ProtocolError  )
+        if  (request.isNetworkError || request.isHttpError)
         {
             var responseText = request.downloadHandler.text;
             try
