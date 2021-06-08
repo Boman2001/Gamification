@@ -92,7 +92,7 @@ public class LoginSceneUiController : MonoBehaviour
             var response = JObject.Parse(request.downloadHandler.text);
             if (response["token"] != null)
             {
-                PlayerPrefs.SetString("token", response["token"].ToString());
+                DataStorageManager.Instance.RequestToken = response["token"].ToString();
                //StartCoroutine(ShowToast($"Success!",1));
                 GoToScene(sceneOnSuccess);
             }

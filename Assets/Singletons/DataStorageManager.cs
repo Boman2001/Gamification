@@ -26,6 +26,18 @@ public class DataStorageManager : MonoBehaviour
 
     #endregion
 
+    public string RequestToken
+    {
+        get
+        {
+           return PlayerPrefs.GetString("token");
+        }
+        set
+        {
+            PlayerPrefs.SetString("token", value);
+        }
+    }
+
     public PlayerType PlayerType
     {
         get
