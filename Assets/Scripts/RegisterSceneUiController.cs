@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Text;
 using System.Threading.Tasks;
+using Config;
 using Dtos;
 using Newtonsoft.Json.Linq;
 using TMPro;
@@ -57,7 +58,7 @@ public class RegisterSceneUiController : MonoBehaviour
         };
 
         var obj = JsonUtility.ToJson(registerDto);
-        StartCoroutine(Post("http://localhost:5000/api/v1/auth/register", obj, scenePref));
+        StartCoroutine(Post(ServerConfig.API_URL + "/auth/register", obj, scenePref));
     }
     
     IEnumerator Post(string url, string bodyJsonString, ScenePref sceneOnSuccess)

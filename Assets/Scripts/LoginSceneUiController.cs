@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Config;
 using Dtos;
 using Newtonsoft.Json.Linq;
 using TMPro;
@@ -46,9 +47,9 @@ public class LoginSceneUiController : MonoBehaviour
             Email = emailInput.text,
             Password = passwordInput.text
         };
-        
-        var obj = JsonUtility.ToJson(loginDto).ToString();
-        StartCoroutine(Post("http://localhost:5000/api/v1/auth/login", obj, scenePref));
+
+        var obj = JsonUtility.ToJson(loginDto);
+        StartCoroutine(Post(ServerConfig.API_URL + "/auth/login", obj, scenePref));
     }
     
     IEnumerator Post(string url, string bodyJsonString, ScenePref sceneOnSuccess)
