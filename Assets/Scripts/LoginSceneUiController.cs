@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Text;
 using Config;
 using Dtos;
+using Enum;
 using Newtonsoft.Json.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -21,6 +23,9 @@ public class LoginSceneUiController : MonoBehaviour
     
     [FormerlySerializedAs("VisitorButton")] [SerializeField]
     public Button userButton;
+    
+    [FormerlySerializedAs("BackButton")] [SerializeField]
+    public Button backButton;
     
     [FormerlySerializedAs("EmailInput")] [SerializeField]
     public TMP_InputField emailInput;
@@ -38,6 +43,7 @@ public class LoginSceneUiController : MonoBehaviour
         hearingImpairedButton.onClick.AddListener( () => { Login(ScenePref.Hearing); });
         sightImpairedButton.onClick.AddListener( () => { Login(ScenePref.Seight); });
         userButton.onClick.AddListener( () => { Login(ScenePref.Vistor); });
+        backButton.onClick.AddListener(() => {GoToScene(ScenePref.Account);});
     }
 
     void Login(ScenePref scenePref)
@@ -122,7 +128,28 @@ public class LoginSceneUiController : MonoBehaviour
     
     void GoToScene(ScenePref scenePref)
     {
-        //StartCoroutine(ShowToast($" {scenePref}", 100000));
+        switch (scenePref)
+        {
+            case ScenePref.Account:
+                SceneManager.LoadScene("Register");
+                break;
+            case ScenePref.Hearing:
+                DataStorageManager.Instance.PlayerType = PlayerType.Hearing;
+                SceneManager.LoadScene("Home");
+                break;
+            case ScenePref.Seight:
+                DataStorageManager.Instance.PlayerType = PlayerType.Seight;
+                SceneManager.LoadScene("Home");
+                break;
+            case ScenePref.Staff:
+                DataStorageManager.Instance.PlayerType = PlayerType.Staff;
+                SceneManager.LoadScene("Home");
+                break;
+            case ScenePref.Vistor:
+                DataStorageManager.Instance.PlayerType = PlayerType.Vistor;
+                SceneManager.LoadScene("Home");
+                break;
+        }
     }
 
 }

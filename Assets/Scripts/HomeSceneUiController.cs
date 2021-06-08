@@ -14,8 +14,6 @@ using UnityEngine.UI;
 
 public class HomeSceneUiController : MonoBehaviour
 {
-    [FormerlySerializedAs("testtext")] [SerializeField]
-    public TMP_Text hearingImpairedButton;
 
     [FormerlySerializedAs("ChangeSubmissionButton")] [SerializeField]
     public Button changeSubmissionButton;
@@ -28,14 +26,6 @@ public class HomeSceneUiController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hearingImpairedButton.text = DataStorageManager.Instance.PlayerType switch
-        {
-            PlayerType.Hearing => "the user is hearing impaired",
-            PlayerType.Seight => "the user is seight impaired",
-            PlayerType.Vistor => "the user is a visitor",
-            PlayerType.Staff => "the user is staff",
-            _ => hearingImpairedButton.text
-        };
 
         changeSubmissionButton.onClick.AddListener( () => { });
         libraryButton.onClick.AddListener( () => { SceneManager.LoadScene("Library"); });
