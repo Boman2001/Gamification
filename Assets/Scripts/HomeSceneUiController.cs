@@ -27,7 +27,10 @@ public class HomeSceneUiController : MonoBehaviour
     void Start()
     {
 
-        changeSubmissionButton.onClick.AddListener( () => { });
+        changeSubmissionButton.onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene("AvatarHearingImpaired");
+        });
         libraryButton.onClick.AddListener( () => { SceneManager.LoadScene("Library"); });
         votingButton.onClick.AddListener( () => { });
     }
