@@ -1,5 +1,8 @@
-﻿namespace Dtos
+﻿using System;
+
+namespace Dtos
 {
+    [Serializable]
     public class SongDto
     {
         public string id;

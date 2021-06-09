@@ -3,7 +3,6 @@ using System.Linq;
 using Databases;
 using Domain;
 using Dtos;
-using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -76,12 +75,12 @@ namespace Avatar.MusicScreen
                 musicListDto.SongDtos.Add(songDto);
             }
             
-            return  JsonConvert.SerializeObject(musicListDto, Formatting.Indented);
+            return JsonUtility.ToJson(musicListDto);
         }
 
         private void Deserialize(string json)
         {
-            var account = JsonConvert.DeserializeObject<MusicListDto>(json);
+            var account = JsonUtility.FromJson<MusicListDto>(json);
             foreach (var item in account.SongDtos.Select(variable => _uiItems.FirstOrDefault(x => x.song.id.ToString() == variable.id)).Where(item => item != null))
             {
                 TaskOnClick(item);
