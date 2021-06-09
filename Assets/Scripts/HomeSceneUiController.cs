@@ -19,6 +19,9 @@ public class HomeSceneUiController : MonoBehaviour
     [FormerlySerializedAs("LogoutButton")] [SerializeField]
     public Button logoutButton;
     
+    [FormerlySerializedAs("SettingsButton")] [SerializeField]
+    public Button settingsButton;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,12 @@ public class HomeSceneUiController : MonoBehaviour
         {
             SceneManager.LoadScene("AvatarVisuallyIImpaired");
         });
+        
+        settingsButton.onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene("Settings");
+        });
+        
         logoutButton.onClick.AddListener(() =>
         {
             PlayerPrefs.DeleteAll();

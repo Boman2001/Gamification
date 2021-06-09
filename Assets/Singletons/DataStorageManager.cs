@@ -28,29 +28,30 @@ public class DataStorageManager : MonoBehaviour
 
     public string RequestToken
     {
-        get
-        {
-           return PlayerPrefs.GetString("token");
-        }
-        set
-        {
-            PlayerPrefs.SetString("token", value);
-        }
+        get { return PlayerPrefs.GetString("token"); }
+        set { PlayerPrefs.SetString("token", value); }
     }
 
     public string MusicSubmission
     {
+        get { return PlayerPrefs.GetString("MusicSubmission"); }
+        set { PlayerPrefs.SetString("MusicSubmission", value); }
+    }
+
+    public float Volume
+    {
         get
         {
-            return PlayerPrefs.GetString("MusicSubmission");
+            return PlayerPrefs.GetFloat("Volume");
+            
         }
         set
         {
-            PlayerPrefs.SetString("MusicSubmission", value);
+            PlayerPrefs.SetFloat("Volume", value);
         }
     }
 
-    public PlayerType PlayerType
+public PlayerType PlayerType
     {
         get
         {

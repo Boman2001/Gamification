@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AvatarVisuallyIImpaired.unity
     guid: f8dd7ec07877fb649b30e2775738cb58
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: 912245d84c939dc43a49859593685956
   m_configObjects: {}

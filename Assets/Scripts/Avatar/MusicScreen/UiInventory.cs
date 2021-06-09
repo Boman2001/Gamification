@@ -29,7 +29,7 @@ namespace Avatar.MusicScreen
         
         private void Awake()
         {
-            volumeSlider.value = source.volume;
+            volumeSlider.value = DataStorageManager.Instance.Volume ;
             _playTextList = new List<TMP_Text>();
             _isPlaying = false;
             _uiItems = new List<UiItem>();
