@@ -26,7 +26,11 @@ public class HomeSceneUiController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        if (DataStorageManager.Instance.MusicSubmission.Length > 1)
+        {
+            changeSubmissionButton.GetComponentInChildren<TMP_Text>().text = "Inzending Aanpassen";
+        }
+        
         changeSubmissionButton.onClick.AddListener(() =>
         {
             SceneManager.LoadScene("AvatarHearingImpaired");

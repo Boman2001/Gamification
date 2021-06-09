@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Databases;
 using Domain;
@@ -34,16 +33,16 @@ namespace Avatar.MusicScreen
             
             submitButton.onClick.AddListener(() =>
             {
-                DataStorageManager.Instance.MusicSubmission = Serialize();
+                DataStorageManager.Instance.MusicSubmission = selectedSongs.Count > 0 ? Serialize() : null;
                 SceneManager.LoadScene("Home");
             }); 
             backButton.onClick.AddListener( () => { SceneManager.LoadScene("Home"); });
             
             GameObject newObj;
 
-            for (int i = 0; i < database.songs.Count; i++)
+            for (var i = 0; i < database.songs.Count; i++)
             {
-                newObj = (GameObject)Instantiate(slotPrefab, transform);
+                newObj = Instantiate(slotPrefab, transform);
                 var item = newObj.GetComponentInChildren<UiItem>();
                 item.song = database.FindSongById(i);
                 item.text.text = item.song.title;
