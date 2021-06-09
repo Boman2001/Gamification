@@ -38,6 +38,18 @@ public class DataStorageManager : MonoBehaviour
         }
     }
 
+    public string MusicSubmission
+    {
+        get
+        {
+            return PlayerPrefs.GetString("MusicSubmission");
+        }
+        set
+        {
+            PlayerPrefs.SetString("MusicSubmission", value);
+        }
+    }
+
     public PlayerType PlayerType
     {
         get

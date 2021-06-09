@@ -1,49 +1,93 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Databases;
 using Domain;
+using Dtos;
+using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Avatar.MusicScreen
 {
     public class UiInventory : MonoBehaviour
     {
+        [FormerlySerializedAs("SubmitButton")] public Button submitButton;
+        [FormerlySerializedAs("BackButton")] public Button backButton;
+        
         public GameObject slotPrefab;
         public GameObject topPrefab;
         public MusicDatabase database;
         public GameObject listPost;
-        public IList<Song> selectedSongs;
+        public List<Song> selectedSongs;
         public AudioSource source;
-        private bool isPlaying;
-        
+        private bool _isPlaying;
+        public List<UiItem> uiItems;
         private void Awake()
         {
-            isPlaying = false;
+            _isPlaying = false;
+            uiItems = new List<UiItem>();
             selectedSongs = new List<Song>();
-            GameObject newObj; // Create GameObject instance
+            
+            submitButton.onClick.AddListener(() =>
+            {
+                DataStorageManager.Instance.MusicSubmission = Serialize();
+                SceneManager.LoadScene("Home");
+            }); 
+            backButton.onClick.AddListener( () => { SceneManager.LoadScene("Home"); });
+            
+            GameObject newObj;
 
             for (int i = 0; i < database.songs.Count; i++)
             {
-                // Create new instances of our prefab until we've created as many as we specified
                 newObj = (GameObject)Instantiate(slotPrefab, transform);
-                UiItem item = newObj.GetComponentInChildren<UiItem>();
+                var item = newObj.GetComponentInChildren<UiItem>();
                 item.song = database.FindSongById(i);
                 item.text.text = item.song.title;
                 item.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     TaskOnClick(item);
                 });
-                
-              
+                uiItems.Add(item);
+            }
+
+            if (DataStorageManager.Instance.MusicSubmission.Length <= 1) return;
+            
+            Deserialize(DataStorageManager.Instance.MusicSubmission);
+        }
+
+        private string Serialize()
+        {
+            var musicListDto = new MusicListDto {SongDtos = new List<SongDto>()};
+            
+            foreach (var songDto in selectedSongs.Select(song => new SongDto()
+            {
+                id = song.id.ToString(),
+                title = song.title
+            }))
+            {
+                musicListDto.SongDtos.Add(songDto);
+            }
+            
+            return  JsonConvert.SerializeObject(musicListDto, Formatting.Indented);
+        }
+
+        private void Deserialize(string json)
+        {
+            var account = JsonConvert.DeserializeObject<MusicListDto>(json);
+            foreach (var item in account.SongDtos.Select(variable => uiItems.FirstOrDefault(x => x.song.id.ToString() == variable.id)).Where(item => item != null))
+            {
+                TaskOnClick(item);
             }
         }
-        
-        void TaskOnClick(UiItem song){    
-            GameObject newObj = (GameObject)Instantiate(topPrefab, listPost.transform);
+
+        private void TaskOnClick(UiItem song){    
+            var newObj = Instantiate(topPrefab, listPost.transform);
             
-            UiItem item = newObj.GetComponent<UiItem>();
+            var item = newObj.GetComponent<UiItem>();
             
             GameObject playbutton = null;
             GameObject playbuttonText = null; 
@@ -52,65 +96,74 @@ namespace Avatar.MusicScreen
             GameObject deletebuttonText = null; 
 
             
-            for (int i = 0; i < item.gameObject.transform.childCount; i++)
+            for (var i = 0; i < item.gameObject.transform.childCount; i++)
             {
-                Transform child =  item.gameObject.transform.GetChild(i);
-                if (child.tag == "HearingPlay")
+                var child =  item.gameObject.transform.GetChild(i);
+                if (child.CompareTag("HearingPlay"))
                     playbutton = child.gameObject;
-                if(child.tag == "HearingDelete")
+                if(child.CompareTag("HearingDelete"))
                     deletebutton = child.gameObject;
-                if(child.tag == "HearingSongTitle")
+                if(child.CompareTag("HearingSongTitle"))
                     hearingTitle = child.gameObject;
             }
-            
-            for (int i = 0; i < playbutton.gameObject.transform.childCount; i++)
+
+            if (playbutton == null || deletebutton == null)
             {
-                Transform child =  playbutton.gameObject.transform.GetChild(i);
-                Debug.Log(child.tag);
-                if (child.tag == "HearingPlayText")
+                StartCoroutine(PopupController.Instance.ShowToast("Something went wrong", 100, PopupController.MessageType.Error));
+                return;
+            }
+            
+            for (var i = 0; i < playbutton.gameObject.transform.childCount; i++)
+            {
+                var child = playbutton.gameObject.transform.GetChild(i);
+                if (child.CompareTag("HearingPlayText"))
                     playbuttonText = child.gameObject;
             }
 
-            for (int i = 0; i < deletebutton.gameObject.transform.childCount; i++)
+            for (var i = 0; i < deletebutton.gameObject.transform.childCount; i++)
             {
-                Transform child =  deletebutton.gameObject.transform.GetChild(i);
-                Debug.Log(child.tag);
-                if (child.tag == "HearingDeleteText")
+                var child = deletebutton.gameObject.transform.GetChild(i);
+                if (child.CompareTag("HearingDeleteText"))
                     deletebuttonText = child.gameObject;
             }
 
-                TMP_Text deleteText = deletebuttonText.GetComponent<TMP_Text>();
-                TMP_Text PlayText =  playbuttonText.GetComponent<TMP_Text>();
-                deleteText.text = "Delete";
-                PlayText.text = "Play";
-                hearingTitle.GetComponent<TMP_Text>().text = song.song.title;
+            if (deletebuttonText == null || playbuttonText == null || hearingTitle == null)
+            {
+                StartCoroutine(PopupController.Instance.ShowToast("Something went wrong", 100, PopupController.MessageType.Error));
+                return;
+            }
             
-                Debug.Log(PlayText.text);
-                Debug.Log(deleteText.text);
-                
-                selectedSongs.Add(song.song);
+            
+            var deleteText = deletebuttonText.GetComponent<TMP_Text>();
+            var playText = playbuttonText.GetComponent<TMP_Text>();
+            deleteText.text = "Delete";
+            playText.text = "Play";
+            hearingTitle.GetComponent<TMP_Text>().text = song.song.title;
 
-                deletebutton.GetComponent<Button>().onClick.AddListener(() =>
+            selectedSongs.Add(song.song);
+
+            deletebutton.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                selectedSongs.Remove(song.song);
+                Destroy(newObj);
+            });
+
+            playbutton.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                if (_isPlaying == false)
                 {
-                    Destroy(newObj);
-                });
-                
-                playbutton.GetComponent<Button>().onClick.AddListener(() =>
+                    playText.text = "Stop";
+                    source.clip = song.song.song;
+                    source.Play();
+                    _isPlaying = true;
+                }
+                else
                 {
-                    if (isPlaying == false)
-                    {
-                        PlayText.text = "Stop";
-                        source.clip = song.song.song;
-                        source.Play();
-                        isPlaying = true;
-                    }
-                    else
-                    {
-                        PlayText.text = "Play";
-                        isPlaying = false;
-                        source.Stop();
-                    }
-                });
+                    playText.text = "Play";
+                    _isPlaying = false;
+                    source.Stop();
+                }
+            });
         }
     }
 }
