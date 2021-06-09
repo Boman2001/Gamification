@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ranking.unity
     guid: 90b6422ad84f65e4c890e26377960579
+  - enabled: 1
+    path: Assets/Scenes/AvatarVisuallyIImpaired.unity
+    guid: f8dd7ec07877fb649b30e2775738cb58
   m_configObjects: {}

@@ -76,7 +76,7 @@ public class RegisterSceneUiController : MonoBehaviour
                 var response = JObject.Parse(responseText);
                 var errorMessage = responseText;
             
-                if (response["message"]["errors"] != null)
+                if (response["message"] != null)
                 {
                     errorMessage = response["message"].ToString();
                 }
