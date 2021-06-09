@@ -11,7 +11,6 @@ namespace Avatar
         public List<Song> AvatarSongs = new List<Song>();
         public MusicDatabase musicDatabase;
         public UiInventory inventory;
-        
 
         public void GiveMusic(int id)
         {

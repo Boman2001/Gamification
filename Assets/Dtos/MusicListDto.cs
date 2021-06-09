@@ -7,9 +7,5 @@ namespace Dtos
         public List<SongDto> SongDtos;
     }
 
-    public class SongDto
-    {
-        public string id;
-        public string title;
-    }
+    
 }

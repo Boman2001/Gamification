@@ -21,19 +21,24 @@ namespace Avatar.MusicScreen
         public GameObject topPrefab;
         public MusicDatabase database;
         public GameObject listPost;
-        public List<Song> selectedSongs;
         public AudioSource source;
+        public Slider volumeSlider;
+        private List<TMP_Text> _playTextList;
         private bool _isPlaying;
-        public List<UiItem> uiItems;
+        private List<UiItem> _uiItems;
+        private List<Song> _selectedSongs;
+        
         private void Awake()
         {
+            volumeSlider.value = source.volume;
+            _playTextList = new List<TMP_Text>();
             _isPlaying = false;
-            uiItems = new List<UiItem>();
-            selectedSongs = new List<Song>();
+            _uiItems = new List<UiItem>();
+            _selectedSongs = new List<Song>();
             
             submitButton.onClick.AddListener(() =>
             {
-                DataStorageManager.Instance.MusicSubmission = selectedSongs.Count > 0 ? Serialize() : null;
+                DataStorageManager.Instance.MusicSubmission = _selectedSongs.Count > 0 ? Serialize() : null;
                 SceneManager.LoadScene("Home");
             }); 
             backButton.onClick.AddListener( () => { SceneManager.LoadScene("Home"); });
@@ -50,7 +55,7 @@ namespace Avatar.MusicScreen
                 {
                     TaskOnClick(item);
                 });
-                uiItems.Add(item);
+                _uiItems.Add(item);
             }
 
             if (DataStorageManager.Instance.MusicSubmission.Length <= 1) return;
@@ -62,7 +67,7 @@ namespace Avatar.MusicScreen
         {
             var musicListDto = new MusicListDto {SongDtos = new List<SongDto>()};
             
-            foreach (var songDto in selectedSongs.Select(song => new SongDto()
+            foreach (var songDto in _selectedSongs.Select(song => new SongDto()
             {
                 id = song.id.ToString(),
                 title = song.title
@@ -77,7 +82,7 @@ namespace Avatar.MusicScreen
         private void Deserialize(string json)
         {
             var account = JsonConvert.DeserializeObject<MusicListDto>(json);
-            foreach (var item in account.SongDtos.Select(variable => uiItems.FirstOrDefault(x => x.song.id.ToString() == variable.id)).Where(item => item != null))
+            foreach (var item in account.SongDtos.Select(variable => _uiItems.FirstOrDefault(x => x.song.id.ToString() == variable.id)).Where(item => item != null))
             {
                 TaskOnClick(item);
             }
@@ -92,9 +97,8 @@ namespace Avatar.MusicScreen
             GameObject playbuttonText = null; 
             GameObject deletebutton = null;
             GameObject hearingTitle = null;
-            GameObject deletebuttonText = null; 
+            GameObject deletebuttonText = null;
 
-            
             for (var i = 0; i < item.gameObject.transform.childCount; i++)
             {
                 var child =  item.gameObject.transform.GetChild(i);
@@ -131,38 +135,47 @@ namespace Avatar.MusicScreen
                 StartCoroutine(PopupController.Instance.ShowToast("Something went wrong", 100, PopupController.MessageType.Error));
                 return;
             }
-            
-            
+
             var deleteText = deletebuttonText.GetComponent<TMP_Text>();
             var playText = playbuttonText.GetComponent<TMP_Text>();
             deleteText.text = "Delete";
             playText.text = "Play";
             hearingTitle.GetComponent<TMP_Text>().text = song.song.title;
-
-            selectedSongs.Add(song.song);
+            _playTextList.Add(playText);
+            _selectedSongs.Add(song.song);
 
             deletebutton.GetComponent<Button>().onClick.AddListener(() =>
             {
-                selectedSongs.Remove(song.song);
+                _selectedSongs.Remove(song.song);
                 Destroy(newObj);
             });
 
             playbutton.GetComponent<Button>().onClick.AddListener(() =>
-            {
-                if (_isPlaying == false)
+            {  
+                source.Stop();
+                foreach (var text in _playTextList)
                 {
-                    playText.text = "Stop";
-                    source.clip = song.song.song;
-                    source.Play();
-                    _isPlaying = true;
+                    text.text = "Play";
                 }
-                else
-                {
-                    playText.text = "Play";
-                    _isPlaying = false;
-                    source.Stop();
-                }
+                playText.text = "Stop";
+                source.clip = song.song.song;
+                source.Play();
+                _isPlaying = true;
             });
+        }
+        void OnEnable()
+        {
+            volumeSlider.onValueChanged.AddListener(delegate { changeVolume(volumeSlider.value); });
+        }
+
+        void changeVolume(float sliderValue)
+        {
+            source.volume = sliderValue;
+        }
+
+        void OnDisable()
+        {
+            volumeSlider.onValueChanged.RemoveAllListeners();
         }
     }
 }
