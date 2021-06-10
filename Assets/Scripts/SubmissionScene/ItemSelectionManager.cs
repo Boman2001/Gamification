@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Entities.Humanoids;
@@ -27,6 +28,14 @@ namespace SubmissionScene {
         };
 
         public GameObject itemDisplayPrefab;
+
+        private void Start() {
+
+            if (this.tabs.Count > 0) {
+                
+                this.SetTab(0);
+            }
+        }
 
         public void SetTab(int index) {
 
