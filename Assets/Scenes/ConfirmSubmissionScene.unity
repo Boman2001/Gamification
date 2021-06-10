@@ -387,6 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7f25ee55b07fd4499ded02ab397757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  submissionButton: {fileID: 1311153536}
 --- !u!4 &900531769
 Transform:
   m_ObjectHideFlags: 0

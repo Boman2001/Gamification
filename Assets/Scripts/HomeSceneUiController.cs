@@ -27,7 +27,7 @@ public class HomeSceneUiController : MonoBehaviour
     [FormerlySerializedAs("SettingsButton")] [SerializeField]
     public Button settingsButton;
     
-    [FormerlySerializedAs("matchText")] [SerializeField]
+    [SerializeField]
     public TMP_Text matchText;
 
     private bool MatchFound;
@@ -35,8 +35,6 @@ public class HomeSceneUiController : MonoBehaviour
     void Start()
     {
         MatchFound = false;
-      
-        
         
         if (DataStorageManager.Instance.MusicSubmission.Length > 1)
         {
@@ -46,30 +44,16 @@ public class HomeSceneUiController : MonoBehaviour
         
         changeSubmissionButton.onClick.AddListener(() =>
         {
-            if (DataStorageManager.Instance.PlayerType == PlayerType.Hearing)
-            {
-                if (!MatchFound)
-                {
-                    SceneManager.LoadScene("Submission");
-                }
-                else
-                {
-                    SceneManager.LoadScene("ConfirmSubmissionScene");
-                }
+            switch(DataStorageManager.Instance.PlayerType) {
+            
+                case PlayerType.Hearing:
+                    SceneManager.LoadScene(!MatchFound || DataStorageManager.Instance.SubmissionSent ? "SubmissionCreateCharacter" : "ConfirmSubmissionScene");
+                    return;
+
+                case PlayerType.Seight:
+                    SceneManager.LoadScene(!MatchFound || DataStorageManager.Instance.SubmissionSent ? "AvatarVisuallyIImpaired" : "ConfirmSubmissionScene");
+                    return;  
             }
-        
-            if (DataStorageManager.Instance.PlayerType == PlayerType.Seight)
-            {
-                if (!MatchFound)
-                {
-                    SceneManager.LoadScene("AvatarVisuallyIImpaired");
-                }
-                else
-                {
-                    SceneManager.LoadScene("ConfirmSubmissionScene");
-                }
-            }
-           
         });
         
         settingsButton.onClick.AddListener(() =>
@@ -84,6 +68,11 @@ public class HomeSceneUiController : MonoBehaviour
         });
         libraryButton.onClick.AddListener( () => { SceneManager.LoadScene("Library"); });
         votingButton.onClick.AddListener( () => { });
+
+        if (DataStorageManager.Instance.SubmissionSent)
+        {
+            matchText.text = "Inzending Verstuurd";
+        }
     }
 
     IEnumerator CoRoutineSubmissionStub()

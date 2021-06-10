@@ -26,6 +26,31 @@ namespace Singletons
 
         #endregion
 
+        public bool SubmissionSent
+        {
+            get
+            {
+                return PlayerPrefs.GetInt("SubmissionSent") switch
+                {
+                    0 => false,
+                    1 => true,
+                    _ => false
+                };
+            }
+            set
+            {
+                switch (value)
+                {
+                    case true:
+                        PlayerPrefs.SetInt("SubmissionSent", 1);
+                        break;
+                    case false:
+                        PlayerPrefs.SetInt("SubmissionSent", 0);
+                        break;
+                }
+            }
+        }
+
         public string RequestToken
         {
             get { return PlayerPrefs.GetString("token"); }
