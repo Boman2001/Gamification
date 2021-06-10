@@ -10,6 +10,7 @@ namespace SubmissionScene {
         public EquipmentLocation equipmentLocation;
         public RectTransform panel;
 
+        public GameObject tabPanel;
         public GameObject itemPanel;
     }
 }

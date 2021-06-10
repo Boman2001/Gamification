@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 using Entities.Humanoids;
@@ -8,17 +7,21 @@ using Inventory.Equipping.Enums;
 using Inventory.ItemTemplates;
 using Inventory.ItemTemplates.Equipable;
 
+using SubmissionScene;
+
 using UnityEngine;
 
 
-namespace SubmissionScene {
+namespace SubmissionCreateCharacterScene {
     
-    public class ItemSelectionManager : MonoBehaviour {
+    public class SubmissionCreateCharacterUIManager : MonoBehaviour {
 
         public Player player;
         
         public List<Tab> tabs;
         public Tab currentTab;
+        
+        public GameObject itemDisplayPrefab;
         
         public GameObject cameraObject;
         public Dictionary<EquipmentLocation, Vector3> equipmentLocationCameraLocation = new Dictionary<EquipmentLocation, Vector3>() {
@@ -26,8 +29,6 @@ namespace SubmissionScene {
             { EquipmentLocation.HEAD, new Vector3(0, 1.65f, 4.5f) },
             { EquipmentLocation.CHEST, new Vector3(0, 1.2f, 5.65f) },
         };
-
-        public GameObject itemDisplayPrefab;
 
         private void Start() {
 

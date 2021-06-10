@@ -50,7 +50,7 @@ public class HomeSceneUiController : MonoBehaviour
             {
                 if (!MatchFound)
                 {
-                    SceneManager.LoadScene("Submission");
+                    SceneManager.LoadScene("SubmissionCreateCharacter");
                 }
                 else
                 {
@@ -69,7 +69,6 @@ public class HomeSceneUiController : MonoBehaviour
                     SceneManager.LoadScene("ConfirmSubmissionScene");
                 }
             }
-           
         });
         
         settingsButton.onClick.AddListener(() =>
