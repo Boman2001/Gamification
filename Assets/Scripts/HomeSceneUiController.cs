@@ -27,10 +27,12 @@ public class HomeSceneUiController : MonoBehaviour
     
     [FormerlySerializedAs("matchText")] [SerializeField]
     public TMP_Text matchText;
-    
+
+    private bool MatchFound;
     // Start is called before the first frame update
     void Start()
     {
+        MatchFound = false;
         if (DataStorageManager.Instance.MusicSubmission.Length > 1)
         {
             changeSubmissionButton.GetComponentInChildren<TMP_Text>().text = "Inzending Aanpassen";
@@ -39,7 +41,14 @@ public class HomeSceneUiController : MonoBehaviour
         
         changeSubmissionButton.onClick.AddListener(() =>
         {
-            SceneManager.LoadScene("AvatarVisuallyIImpaired");
+            if (!MatchFound)
+            {
+                SceneManager.LoadScene("AvatarVisuallyIImpaired");
+            }
+            else
+            {
+                SceneManager.LoadScene("ConfirmSubmissionScene");
+            }
         });
         
         settingsButton.onClick.AddListener(() =>
@@ -61,5 +70,6 @@ public class HomeSceneUiController : MonoBehaviour
         yield return new WaitForSeconds(5);
         changeSubmissionButton.GetComponentInChildren<TMP_Text>().text = "Inzending afmaken";
         matchText.text = "Match gevonden";
+        MatchFound = true;
     }
 }
