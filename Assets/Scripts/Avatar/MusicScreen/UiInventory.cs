@@ -3,6 +3,7 @@ using System.Linq;
 using Databases;
 using Domain;
 using Dtos;
+using Singletons;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -111,7 +112,6 @@ namespace Avatar.MusicScreen
 
             if (playbutton == null || deletebutton == null)
             {
-                StartCoroutine(PopupController.Instance.ShowToast("Something went wrong", 100, PopupController.MessageType.Error));
                 return;
             }
             
@@ -131,7 +131,6 @@ namespace Avatar.MusicScreen
 
             if (deletebuttonText == null || playbuttonText == null || hearingTitle == null)
             {
-                StartCoroutine(PopupController.Instance.ShowToast("Something went wrong", 100, PopupController.MessageType.Error));
                 return;
             }
 

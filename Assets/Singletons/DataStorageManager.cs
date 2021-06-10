@@ -1,90 +1,96 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Dtos;
 using Enum;
+using JWT;
+using JWT.Algorithms;
+using JWT.Exceptions;
+using JWT.Serializers;
 using UnityEngine;
 
-public class DataStorageManager : MonoBehaviour
+namespace Singletons
 {
-
-    #region Singleton
-
-    public static DataStorageManager Instance;
-
-    private void Awake()
+    public class DataStorageManager : MonoBehaviour
     {
-        if (Instance == null)
+
+        #region Singleton
+
+        public static DataStorageManager Instance;
+
+        private void Awake()
         {
-            Instance = this;
-            DontDestroyOnLoad(this);
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(this);
+            }
+            else if (Instance != this)
+            {
+                Destroy(this.gameObject);
+            }
         }
-        else if (Instance != this)
+
+        #endregion
+
+        public string RequestToken
         {
-            Destroy(this.gameObject);
+            get { return PlayerPrefs.GetString("token"); }
+            set { PlayerPrefs.SetString("token", value); }
         }
-    }
 
-    #endregion
-
-    public string RequestToken
-    {
-        get { return PlayerPrefs.GetString("token"); }
-        set { PlayerPrefs.SetString("token", value); }
-    }
-
-    public string MusicSubmission
-    {
-        get { return PlayerPrefs.GetString("MusicSubmission"); }
-        set { PlayerPrefs.SetString("MusicSubmission", value); }
-    }
-
-    public float Volume
-    {
-        get
+        public string MusicSubmission
         {
-            return PlayerPrefs.GetFloat("Volume");
+            get { return PlayerPrefs.GetString("MusicSubmission"); }
+            set { PlayerPrefs.SetString("MusicSubmission", value); }
+        }
+
+        public float Volume
+        {
+            get
+            {
+                return PlayerPrefs.GetFloat("Volume");
             
+            }
+            set
+            {
+                PlayerPrefs.SetFloat("Volume", value);
+            }
         }
-        set
-        {
-            PlayerPrefs.SetFloat("Volume", value);
-        }
-    }
 
-public PlayerType PlayerType
-    {
-        get
+        public PlayerType PlayerType
         {
-            return PlayerPrefs.GetInt("PlayerType") switch
+            get
             {
-                0 => PlayerType.Hearing,
-                1 => PlayerType.Seight,
-                2 => PlayerType.Staff,
-                3 => PlayerType.Vistor,
-                _ => PlayerType.Vistor
-            };
-        }
-        set
-        {
-            switch (value)
+                return PlayerPrefs.GetInt("PlayerType") switch
+                {
+                    0 => PlayerType.Hearing,
+                    1 => PlayerType.Seight,
+                    2 => PlayerType.Staff,
+                    3 => PlayerType.Vistor,
+                    _ => PlayerType.Vistor
+                };
+            }
+            set
             {
-                case PlayerType.Hearing:
-                    PlayerPrefs.SetInt("PlayerType", 0 );
-                    break;
+                switch (value)
+                {
+                    case PlayerType.Hearing:
+                        PlayerPrefs.SetInt("PlayerType", 0 );
+                        break;
                 
-                case PlayerType.Seight:
-                    PlayerPrefs.SetInt("PlayerType", 1 );
-                    break;
+                    case PlayerType.Seight:
+                        PlayerPrefs.SetInt("PlayerType", 1 );
+                        break;
 
-                case PlayerType.Staff:
-                    PlayerPrefs.SetInt("PlayerType", 2 );
-                    break;
+                    case PlayerType.Staff:
+                        PlayerPrefs.SetInt("PlayerType", 2 );
+                        break;
 
-                case PlayerType.Vistor:
-                    PlayerPrefs.SetInt("PlayerType", 3 );
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(value), value, null);
+                    case PlayerType.Vistor:
+                        PlayerPrefs.SetInt("PlayerType", 3 );
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(value), value, null);
+                }
             }
         }
     }

@@ -6,6 +6,7 @@ using Config;
 using Dtos;
 using Enum;
 using Newtonsoft.Json.Linq;
+using Singletons;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;

@@ -1,3 +1,4 @@
+using Singletons;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;

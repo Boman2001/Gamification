@@ -6,6 +6,7 @@ using Config;
 using Dtos;
 using Enum;
 using Newtonsoft.Json.Linq;
+using Singletons;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -64,7 +65,7 @@ public class LoginSceneUiController : MonoBehaviour
         var bodyRaw = Encoding.UTF8.GetBytes(bodyJsonString);
         request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("Content-Type", "application/json-patch+json");
         yield return request.SendWebRequest();
         
         if  (request.isNetworkError || request.isHttpError)
