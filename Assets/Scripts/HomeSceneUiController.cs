@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using Singletons;
 using TMPro;
 using UnityEngine;
@@ -23,12 +25,16 @@ public class HomeSceneUiController : MonoBehaviour
     [FormerlySerializedAs("SettingsButton")] [SerializeField]
     public Button settingsButton;
     
+    [FormerlySerializedAs("matchText")] [SerializeField]
+    public TMP_Text matchText;
+    
     // Start is called before the first frame update
     void Start()
     {
         if (DataStorageManager.Instance.MusicSubmission.Length > 1)
         {
             changeSubmissionButton.GetComponentInChildren<TMP_Text>().text = "Inzending Aanpassen";
+            StartCoroutine(CoRoutineSubmissionStub());
         }
         
         changeSubmissionButton.onClick.AddListener(() =>
@@ -48,5 +54,12 @@ public class HomeSceneUiController : MonoBehaviour
         });
         libraryButton.onClick.AddListener( () => { SceneManager.LoadScene("Library"); });
         votingButton.onClick.AddListener( () => { });
+    }
+
+    IEnumerator CoRoutineSubmissionStub()
+    {
+        yield return new WaitForSeconds(5);
+        changeSubmissionButton.GetComponentInChildren<TMP_Text>().text = "Inzending afmaken";
+        matchText.text = "Match gevonden";
     }
 }
