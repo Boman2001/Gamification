@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enum;
 using Singletons;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -33,6 +35,9 @@ public class HomeSceneUiController : MonoBehaviour
     void Start()
     {
         MatchFound = false;
+      
+        
+        
         if (DataStorageManager.Instance.MusicSubmission.Length > 1)
         {
             changeSubmissionButton.GetComponentInChildren<TMP_Text>().text = "Inzending Aanpassen";
@@ -41,14 +46,30 @@ public class HomeSceneUiController : MonoBehaviour
         
         changeSubmissionButton.onClick.AddListener(() =>
         {
-            if (!MatchFound)
+            if (DataStorageManager.Instance.PlayerType == PlayerType.Hearing)
             {
-                SceneManager.LoadScene("AvatarVisuallyIImpaired");
+                if (!MatchFound)
+                {
+                    SceneManager.LoadScene("Submission");
+                }
+                else
+                {
+                    SceneManager.LoadScene("ConfirmSubmissionScene");
+                }
             }
-            else
+        
+            if (DataStorageManager.Instance.PlayerType == PlayerType.Seight)
             {
-                SceneManager.LoadScene("ConfirmSubmissionScene");
+                if (!MatchFound)
+                {
+                    SceneManager.LoadScene("AvatarVisuallyIImpaired");
+                }
+                else
+                {
+                    SceneManager.LoadScene("ConfirmSubmissionScene");
+                }
             }
+           
         });
         
         settingsButton.onClick.AddListener(() =>
