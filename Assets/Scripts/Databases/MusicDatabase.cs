@@ -9,7 +9,7 @@ namespace Databases
     {
         public List<Song> songs = new List<Song>();
 
-        public List<Song> Songs
+        public List<Song> _Songs
         {
             get => songs;
             set => songs = value;
@@ -19,6 +19,5 @@ namespace Databases
         {
             return songs.FirstOrDefault(x => x.id == id);
         }
-
     }
 }
