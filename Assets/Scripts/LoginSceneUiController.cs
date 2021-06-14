@@ -40,6 +40,7 @@ public class LoginSceneUiController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.DeleteAll();
         //Todo: If Token is set and valid automatically log in and continue, wss gwn een /me en als die faalt log uit
         hearingImpairedButton.onClick.AddListener( () => { Login(ScenePref.Hearing); });
         sightImpairedButton.onClick.AddListener( () => { Login(ScenePref.Seight); });
