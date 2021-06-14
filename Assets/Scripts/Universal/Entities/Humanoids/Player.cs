@@ -1,25 +1,22 @@
-﻿using System;
-using System.Collections;
-
-using Inventory.ItemTemplates.Equipable;
+﻿using System.Collections;
 
 using UnityEngine;
 
 
-namespace Entities.Humanoids {
+namespace Universal.Entities.Humanoids {
     
     public class Player : MonoBehaviour {
 
         public int coins;
+        
+        public string[] animationQueue;
         public Inventory.Inventory inventory;
         
         public Animator animator;
-
         public int repeatAnimationFor = 1;
-        public string[] animationQueue;
-
-        private void Start() {
-
+        
+        public void PlayAnimations() {
+            
             this.StartCoroutine(nameof(this.WorkAnimationQueue));
         }
 

@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-
-using Inventory.Equipping.Enums;
-using Inventory.ItemTemplates.Equipable;
 
 using UnityEngine;
 
+using Universal.Inventory.Equipping.Enums;
+using Universal.Inventory.ItemTemplates.Equipable;
 
-namespace Inventory.Equipping {
+
+namespace Universal.Inventory.Equipping {
 
     public class EquipmentManager : MonoBehaviour {
 
@@ -21,6 +20,7 @@ namespace Inventory.Equipping {
         public GameObject twoHandedEquipmentLocation;
 
         public GameObject headEquipmentLocation;
+        public GameObject faceEquipmentLocation;
         public GameObject chestEquipmentLocation;
 
         public GameObject leftLegEquipmentLocation;
@@ -45,28 +45,31 @@ namespace Inventory.Equipping {
 
                 {
                     EquipmentLocation.LEFT_HAND, this.leftHandEquipmentLocation
-                }, 
+                },
                 {
                     EquipmentLocation.RIGHT_HAND, this.rightHandEquipmentLocation
                 },
                 {
                     EquipmentLocation.TWO_HANDED, this.twoHandedEquipmentLocation
-                }, 
+                },
                 {
                     EquipmentLocation.HEAD, this.headEquipmentLocation
-                }, 
+                },
+                {
+                    EquipmentLocation.FACE, this.faceEquipmentLocation
+                },
                 {
                     EquipmentLocation.CHEST, this.chestEquipmentLocation
-                }, 
+                },
                 {
                     EquipmentLocation.LEFT_LEG, this.leftLegEquipmentLocation
-                }, 
+                },
                 {
                     EquipmentLocation.RIGHT_LEG, this.rightLegEquipmentLocation
-                }, 
+                },
                 {
                     EquipmentLocation.LEFT_FOOT, this.leftFootEquipmentLocation
-                }, 
+                },
                 {
                     EquipmentLocation.RIGHT_FOOT, this.rightFootEquipmentLocation
                 }

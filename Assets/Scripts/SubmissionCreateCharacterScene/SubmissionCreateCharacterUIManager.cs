@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-using Entities.Humanoids;
-
-using Inventory.Equipping.Enums;
-using Inventory.ItemTemplates;
-using Inventory.ItemTemplates.Equipable;
-
-using SubmissionScene;
-
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+using Universal.Entities.Humanoids;
+using Universal.Inventory.Equipping.Enums;
+using Universal.Inventory.ItemTemplates;
+using Universal.Inventory.ItemTemplates.Equipable;
+using Universal.UI;
 
 
 namespace SubmissionCreateCharacterScene {
@@ -18,16 +17,17 @@ namespace SubmissionCreateCharacterScene {
 
         public Player player;
         
-        public List<Tab> tabs;
-        public Tab currentTab;
+        public List<EquipTab> tabs;
+        public EquipTab currentTab;
         
         public GameObject itemDisplayPrefab;
         
         public GameObject cameraObject;
         public Dictionary<EquipmentLocation, Vector3> equipmentLocationCameraLocation = new Dictionary<EquipmentLocation, Vector3>() {
-            
-            { EquipmentLocation.HEAD, new Vector3(0, 1.65f, 4.5f) },
-            { EquipmentLocation.CHEST, new Vector3(0, 1.2f, 5.65f) },
+
+            { EquipmentLocation.FACE, new Vector3(0, 1.65f, 1.191f) },
+            { EquipmentLocation.HEAD, new Vector3(0, 1.65f, 1.191f) },
+            { EquipmentLocation.CHEST, new Vector3(0, 1.65f, 3.191f) },
         };
 
         private void Start() {
@@ -38,14 +38,26 @@ namespace SubmissionCreateCharacterScene {
             }
         }
 
+        public void SubmitCharacter() {
+            
+            //@TODO: POST
+            
+            SceneManager.LoadScene("SubmissionChooseMoves");
+        }
+
+        public void CancelCharacter() {
+
+            SceneManager.LoadScene("Home");
+        }
+
         public void SetTab(int index) {
 
             for (int i = 0; i < this.tabs.Count; i++) {
 
-                this.tabs[i].tabPanel.SetActive(i == index);
+                this.tabs[i].tabInner.SetActive(i == index);
             }
             
-            Tab tab = this.tabs[index];
+            EquipTab tab = this.tabs[index];
             this.cameraObject.transform.localPosition = this.equipmentLocationCameraLocation[tab.equipmentLocation];
 
             if (this.currentTab != null) {
@@ -56,10 +68,10 @@ namespace SubmissionCreateCharacterScene {
             this.BuildItemPanel(tab.itemPanel, tab.equipmentLocation);
             
             this.currentTab = tab;
-            tab.panel.SetAsFirstSibling();
+            tab.tabRoot.SetAsFirstSibling();
         }
 
-        public void BuildItemPanel(GameObject itemPanel, EquipmentLocation equipmentLocation) {
+        private void BuildItemPanel(GameObject itemPanel, EquipmentLocation equipmentLocation) {
 
             if (itemPanel == null) {
 
@@ -92,7 +104,7 @@ namespace SubmissionCreateCharacterScene {
             }
         }
         
-        public void WipeItemPanel(GameObject itemPanel) {
+        private void WipeItemPanel(GameObject itemPanel) {
 
             if (itemPanel == null) {
 

@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 
-using Inventory.Equipping;
-using Inventory.ItemTemplates;
-
 using UnityEngine;
 
+using Universal.Inventory.Equipping;
+using Universal.Inventory.ItemTemplates;
 
-namespace Inventory {
+
+namespace Universal.Inventory {
     public class Inventory : MonoBehaviour {
 
         public EquipmentManager equipmentManager;
