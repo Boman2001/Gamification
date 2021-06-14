@@ -159,8 +159,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 346.96536, y: -2098.9182}
-  m_SizeDelta: {x: 281.102, y: 119.96094}
+  m_AnchoredPosition: {x: 294.9898, y: -1748.697}
+  m_SizeDelta: {x: 235.219, y: 118.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &232507138
 MonoBehaviour:
@@ -405,12 +405,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -615,8 +615,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -178.98212, y: -1615.9664}
-  m_SizeDelta: {x: 675.309, y: 123.12402}
+  m_AnchoredPosition: {x: -145.10887, y: -1271.3434}
+  m_SizeDelta: {x: 565.08, y: 121.697}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &516004242
 MonoBehaviour:
@@ -949,8 +949,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -178.98215, y: -1218.4441}
-  m_SizeDelta: {x: 675.309, y: 123.12402}
+  m_AnchoredPosition: {x: -145.10887, y: -878.4289}
+  m_SizeDelta: {x: 565.08, y: 121.697}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &858432647
 MonoBehaviour:
@@ -1083,8 +1083,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -178.98212, y: -413.0866}
-  m_SizeDelta: {x: 675.309, y: 123.12402}
+  m_AnchoredPosition: {x: -145.109, y: -82.407}
+  m_SizeDelta: {x: 565.08, y: 121.697}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &876666724
 MonoBehaviour:
@@ -1133,7 +1133,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 68.05
+  m_fontSize: 56.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1301,8 +1301,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 366.96335, y: -409.91693}
-  m_SizeDelta: {x: 286.45, y: 116.777954}
+  m_AnchoredPosition: {x: 311.724, y: -79.274}
+  m_SizeDelta: {x: 239.694, y: 115.424}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1262741085
 GameObject:
@@ -1338,8 +1338,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -178.98212, y: -847.0432}
-  m_SizeDelta: {x: 675.309, y: 123.12402}
+  m_AnchoredPosition: {x: -145.10887, y: -511.33304}
+  m_SizeDelta: {x: 565.08, y: 121.697}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1262741087
 MonoBehaviour:
@@ -1608,8 +1608,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -327.96722, y: -2098.9182}
-  m_SizeDelta: {x: 281.102, y: 119.96094}
+  m_AnchoredPosition: {x: -269.776, y: -1748.697}
+  m_SizeDelta: {x: 235.219, y: 118.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1932756943
 MonoBehaviour:
@@ -1777,7 +1777,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 67.25
+  m_fontSize: 56.3
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1929,7 +1929,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7754cdf0ad7333343aa30d4e758583da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e007b097be2505a458e2dc7f294d0bc9, type: 3}
   m_Type: 2
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1938,7 +1938,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 3
+  m_PixelsPerUnitMultiplier: 0.47
 --- !u!222 &2126547429
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed7c4c967a543dfaec70a392289e0e1, type: 3}
+  m_Name: Tophat
+  m_EditorClassIdentifier: 
+  id: 2
+  name: Tophat
+  description: A cool tophat
+  icon: {fileID: 21300000, guid: b1e7c547e3bc4234bab83a855583762b, type: 3}
+  onUsedAudioClips: []
+  equipPrefab: {fileID: 240374436495762949, guid: cb6483563e852ea4ea37a02b56ccadc9, type: 3}
+  equipmentLocation: 3

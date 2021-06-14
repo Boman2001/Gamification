@@ -2,6 +2,6 @@
 {
     public class ServerConfig
     {
-        public const string API_URL = "http://localhost:5000/api/v1";
+        public const string API_URL = "https://theater-gamification.azurewebsites.net/api/v1";
     }
 }
