@@ -40,6 +40,11 @@ namespace SubmissionCreateCharacterScene {
 
         public void SetTab(int index) {
 
+            for (int i = 0; i < this.tabs.Count; i++) {
+
+                this.tabs[i].tabPanel.SetActive(i == index);
+            }
+            
             Tab tab = this.tabs[index];
             this.cameraObject.transform.localPosition = this.equipmentLocationCameraLocation[tab.equipmentLocation];
 
