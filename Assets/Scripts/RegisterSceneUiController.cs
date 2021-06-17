@@ -17,18 +17,6 @@ using UnityEngine.UI;
 
 public class RegisterSceneUiController : MonoBehaviour
 {
-    [FormerlySerializedAs("HearingImpairedButton")] [SerializeField]
-    public Button hearingImpairedButton;
-    
-    [FormerlySerializedAs("SightImpairedButton")] [SerializeField]
-    public Button sightImpairedButton;
-    
-    [FormerlySerializedAs("VisitorButton")] [SerializeField]
-    public Button userButton;
-    
-    [FormerlySerializedAs("AccountButton")] [SerializeField]
-    public Button accountButton;
-    
     [FormerlySerializedAs("EmailInput")] [SerializeField]
     public TMP_InputField emailInput;
     
@@ -43,12 +31,24 @@ public class RegisterSceneUiController : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         //Todo: If Token is set and valid automatically log in and continue, wss gwn een /me en als die faalt log uit
-        hearingImpairedButton.onClick.AddListener( () => { Register(ScenePref.Hearing); });
-        sightImpairedButton.onClick.AddListener( () => { Register(ScenePref.Seight); });
-        userButton.onClick.AddListener( () => { Register(ScenePref.Vistor); });
-        accountButton.onClick.AddListener(() => { GoToScene(ScenePref.Account); });
     }
 
+    public void HearingBehavior()
+    {
+        Register(ScenePref.Hearing);
+    }
+    public void SightBehavior()
+    {
+        Register(ScenePref.Seight);
+    }
+    public void UserBehavior()
+    { 
+        Register(ScenePref.Vistor);
+    }
+    public void AccountBehavior()
+    {
+        GoToScene(ScenePref.Account);
+    }
     void Register(ScenePref scenePref)
     {
         var registerDto = new RegisterDto

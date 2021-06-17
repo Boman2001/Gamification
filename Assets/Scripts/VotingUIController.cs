@@ -8,9 +8,6 @@ using UnityEngine.UI;
 
 public class VotingUIController : MonoBehaviour
 {
-    [FormerlySerializedAs("ContinueButton")] [SerializeField]
-    public Button continueButton;
-    
     [FormerlySerializedAs("CodeInput")] [SerializeField]
     public TMP_InputField CodeInput;
 
@@ -18,11 +15,10 @@ public class VotingUIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        continueButton.onClick.AddListener(() => { ValidateCode();});
     }
 
 
-    void ValidateCode()
+   public  void ValidateCode()
     {
         if (CodeInput.text.Equals("5678"))
         {
