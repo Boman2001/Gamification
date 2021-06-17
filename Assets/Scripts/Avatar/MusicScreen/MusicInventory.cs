@@ -10,7 +10,7 @@ namespace Avatar
     {
         public List<Song> AvatarSongs = new List<Song>();
         public MusicDatabase musicDatabase;
-        public UiInventory inventory;
+        public MusicSceneUiController inventory;
 
         public void GiveMusic(int id)
         {

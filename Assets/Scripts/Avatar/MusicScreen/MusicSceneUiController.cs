@@ -5,7 +5,6 @@ using System.Text;
 using Databases;
 using Domain;
 using Dtos;
-using Enum;
 using Singletons;
 using TMPro;
 using UnityEngine;
@@ -16,46 +15,30 @@ using UnityEngine.UI;
 
 namespace Avatar.MusicScreen
 {
-    public class UiInventory : MonoBehaviour
+    public class MusicSceneUiController : MonoBehaviour
     {
-        [FormerlySerializedAs("SubmitButton")] public Button submitButton;
-        [FormerlySerializedAs("BackButton")] public Button backButton;
+        [FormerlySerializedAs("Avatar top view prefab")] public GameObject avatarHoldingContent;
+        [FormerlySerializedAs("Avatar bottom view prefab")] public GameObject avatarMusicLibraryContent;
         
         public GameObject slotPrefab;
         public GameObject topPrefab;
         public MusicDatabase database;
-        public GameObject listPost;
         public AudioSource source;
         public Slider volumeSlider;
         private List<TMP_Text> _playTextList;
-        private bool _isPlaying;
         private List<UiItem> _uiItems;
         private List<Song> _selectedSongs;
         
-        private void Awake()
+        private void Start()
         {
-            volumeSlider.value = DataStorageManager.Instance.Volume ;
+            volumeSlider.value = DataStorageManager.Instance.Volume;
             _playTextList = new List<TMP_Text>();
-            _isPlaying = false;
             _uiItems = new List<UiItem>();
             _selectedSongs = new List<Song>();
-            
-            submitButton.onClick.AddListener(() =>
-            {
-                DataStorageManager.Instance.MusicSubmission = _selectedSongs.Count > 0 ? Serialize() : null;
-                if (DataStorageManager.Instance.SubmissionSent)
-                {
-                    SendSubmission();
-                }
-                SceneManager.LoadScene("Home");
-            }); 
-            backButton.onClick.AddListener( () => { SceneManager.LoadScene("Home"); });
-            
-            GameObject newObj;
 
             for (var i = 0; i < database.songs.Count; i++)
             {
-                newObj = Instantiate(slotPrefab, transform);
+                var newObj = Instantiate(slotPrefab, avatarMusicLibraryContent.transform);
                 var item = newObj.GetComponentInChildren<UiItem>();
                 item.song = database.FindSongById(i);
                 item.text.text = item.song.title;
@@ -67,10 +50,24 @@ namespace Avatar.MusicScreen
             }
 
             if (DataStorageManager.Instance.MusicSubmission.Length <= 1) return;
-            
             Deserialize(DataStorageManager.Instance.MusicSubmission);
         }
 
+        public void Submit()
+        {
+            DataStorageManager.Instance.MusicSubmission = _selectedSongs.Count > 0 ? Serialize() : null;
+            if (DataStorageManager.Instance.SubmissionSent)
+            {
+                SendSubmission();
+            }   
+            SceneManager.LoadScene("Home");
+        }
+
+        public void Back()
+        {
+             SceneManager.LoadScene("Home");
+        }
+        
         private string Serialize()
         {
             var musicListDto = new MusicListDto {SongDtos = new List<SongDto>()};
@@ -97,7 +94,7 @@ namespace Avatar.MusicScreen
         }
 
         private void TaskOnClick(UiItem song){    
-            var newObj = Instantiate(topPrefab, listPost.transform);
+            var newObj = Instantiate(topPrefab, avatarHoldingContent.transform);
             
             var item = newObj.GetComponent<UiItem>();
             
@@ -152,63 +149,73 @@ namespace Avatar.MusicScreen
 
             deletebutton.GetComponent<Button>().onClick.AddListener(() =>
             {
+                if (playText.text == "Stop")
+                {
+                    source.Stop();
+                }
                 _selectedSongs.Remove(song.song);
                 Destroy(newObj);
             });
 
             playbutton.GetComponent<Button>().onClick.AddListener(() =>
-            {  
-                source.Stop();
-                foreach (var text in _playTextList)
-                {
-                    text.text = "Play";
-                }
-                playText.text = "Stop";
-                source.clip = song.song.song;
-                source.Play();
-                _isPlaying = true;
+            {
+                StartStop(playText, song);
             });
         }
-        void OnEnable()
-        {
-            volumeSlider.onValueChanged.AddListener(delegate { changeVolume(volumeSlider.value); });
-        }
-
-        void changeVolume(float sliderValue)
-        {
-            source.volume = sliderValue;
-        }
-
-        void OnDisable()
-        {
-            volumeSlider.onValueChanged.RemoveAllListeners();
-        }
-        
         void SendSubmission()
         {
-            if (DataStorageManager.Instance.PlayerType == PlayerType.Seight)
+            if (DataStorageManager.Instance.MusicSubmission.Length > 1)
             {
-                if (DataStorageManager.Instance.MusicSubmission.Length > 1)
-                {
-                    StartCoroutine(Post("/tournaments", DataStorageManager.Instance.MusicSubmission));
-                    DataStorageManager.Instance.SubmissionSent = true;
-                    SceneManager.LoadScene("Home");
-                }
+                StartCoroutine(Post("/tournaments", DataStorageManager.Instance.MusicSubmission)); 
+                DataStorageManager.Instance.SubmissionSent = true; 
+                SceneManager.LoadScene("Home");
             }
-
         }
-
         IEnumerator Post(string url, string bodyJsonString)
         {
             var request = new UnityWebRequest(url, "POST");
             var bodyRaw = Encoding.UTF8.GetBytes(bodyJsonString);
-            request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
-            request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler =  new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json-patch+json");
             yield return request.SendWebRequest();
 
         }
+        private void OnEnable()
+        {
+            volumeSlider.onValueChanged.AddListener(delegate { ChangeVolume(volumeSlider.value); });
+        }
+
+        private void ChangeVolume(float sliderValue)
+        {
+            source.volume = sliderValue;
+        }
+
+        private void OnDisable()
+        {
+            volumeSlider.onValueChanged.RemoveAllListeners();
+        }
+        private void StartStop(TMP_Text button, UiItem song)
+        {
+            source.Stop();
+
+            if (button.text == "Stop")
+            {
+                foreach (var text in _playTextList)
+                {
+                    text.text = "Play";
+                }
+            }
+            else
+            {
+                foreach (var text in _playTextList)
+                {
+                    text.text = "Play";
+                }
+                button.text = "Stop";
+                source.clip = song.song.song;
+                source.Play();
+            } 
+        }
     }
-    
-    
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6627472793450151970}
   - component: {fileID: 2445904631414248618}
   m_Layer: 5
-  m_Name: Button
+  m_Name: AvatarMusicItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
