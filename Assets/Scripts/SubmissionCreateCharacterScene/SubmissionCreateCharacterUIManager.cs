@@ -25,9 +25,9 @@ namespace SubmissionCreateCharacterScene {
         public GameObject cameraObject;
         public Dictionary<EquipmentLocation, Vector3> equipmentLocationCameraLocation = new Dictionary<EquipmentLocation, Vector3>() {
 
-            { EquipmentLocation.FACE, new Vector3(0, 1.65f, 1.191f) },
-            { EquipmentLocation.HEAD, new Vector3(0, 1.65f, 1.191f) },
-            { EquipmentLocation.CHEST, new Vector3(0, 1.65f, 3.191f) },
+            { EquipmentLocation.FACE, new Vector3(0, 1.65f, 4.5f) },
+            { EquipmentLocation.HEAD, new Vector3(0, 1.65f, 4.5f) },
+            { EquipmentLocation.CHEST, new Vector3(0, 1.65f, 6.5f) },
         };
 
         private void Start() {
