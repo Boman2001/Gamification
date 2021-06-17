@@ -3406,8 +3406,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00012207031}
-  m_SizeDelta: {x: 0, y: 1099.7}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &231759463
 MonoBehaviour:
@@ -3422,7 +3422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
-  m_VerticalFit: 0
+  m_VerticalFit: 2
 --- !u!114 &231759464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3440,10 +3440,10 @@ MonoBehaviour:
     m_Right: 20
     m_Top: 20
     m_Bottom: 20
-  m_ChildAlignment: 0
+  m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 1580, y: 400}
+  m_CellSize: {x: 1100, y: 200}
   m_Spacing: {x: 24, y: 24}
   m_Constraint: 1
   m_ConstraintCount: 1
@@ -8133,29 +8133,57 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 3.191
       objectReference: {fileID: 0}
+    - target: {fileID: 2378655747592971386, guid: 6ee2aa5013f4fc7498c8c578c31694e0, type: 3}
+      propertyPath: onAnimationCompleted.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378655747592971386, guid: 6ee2aa5013f4fc7498c8c578c31694e0, type: 3}
+      propertyPath: onAnimationCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378655747592971386, guid: 6ee2aa5013f4fc7498c8c578c31694e0, type: 3}
+      propertyPath: onAnimationCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378655747592971386, guid: 6ee2aa5013f4fc7498c8c578c31694e0, type: 3}
+      propertyPath: onAnimationCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378655747592971386, guid: 6ee2aa5013f4fc7498c8c578c31694e0, type: 3}
+      propertyPath: onAnimationCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnAnimationCompleted
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378655747592971386, guid: 6ee2aa5013f4fc7498c8c578c31694e0, type: 3}
+      propertyPath: onAnimationCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SubmissionChooseMovesScene.SubmissionChooseMovesUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378655747592971386, guid: 6ee2aa5013f4fc7498c8c578c31694e0, type: 3}
+      propertyPath: onAnimationCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4578116849441238358, guid: 6ee2aa5013f4fc7498c8c578c31694e0, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4578163213392209789, guid: 6ee2aa5013f4fc7498c8c578c31694e0, type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: 0.00226701
+      value: 0.0022677253
       objectReference: {fileID: 0}
     - target: {fileID: 4578250658003750045, guid: 6ee2aa5013f4fc7498c8c578c31694e0, type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: 0.00226701
+      value: 0.0022677253
       objectReference: {fileID: 0}
     - target: {fileID: 4578417880669101835, guid: 6ee2aa5013f4fc7498c8c578c31694e0, type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: -0.012352336
+      value: -0.012352098
       objectReference: {fileID: 0}
     - target: {fileID: 4578610914286725171, guid: 6ee2aa5013f4fc7498c8c578c31694e0, type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: 0.011315251
+      value: 0.011316204
       objectReference: {fileID: 0}
     - target: {fileID: 4578709114647693747, guid: 6ee2aa5013f4fc7498c8c578c31694e0, type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: -0.012352336
+      value: -0.012352098
       objectReference: {fileID: 0}
     - target: {fileID: 4583710958210493454, guid: 6ee2aa5013f4fc7498c8c578c31694e0, type: 3}
       propertyPath: m_RootOrder
@@ -8707,8 +8735,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 740820464}
   m_HandleRect: {fileID: 740820463}
   m_Direction: 2
-  m_Value: 0.9999999
-  m_Size: 0.39064667
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10984,6 +11012,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 305015082525052160, guid: 26c6249271175d84a84b520657f1cf88, type: 3}
   m_PrefabInstance: {fileID: 795475193}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &796823102 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2378655747592971386, guid: 6ee2aa5013f4fc7498c8c578c31694e0, type: 3}
+  m_PrefabInstance: {fileID: 574694281}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9d97486d7db4a8ba620c1f93c77d97f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &797776026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11980,7 +12019,6 @@ GameObject:
   m_Component:
   - component: {fileID: 855401870}
   - component: {fileID: 855401869}
-  - component: {fileID: 855401868}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -11988,25 +12026,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &855401868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 855401867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4845f097d37940cbb68b72c001e4db74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  tabs:
-  - {fileID: 0}
-  - {fileID: 0}
-  currentTab: {fileID: 0}
-  itemDisplayPrefab: {fileID: 7423764713886886260, guid: cf03e5a8a9627ae4ab43dc648c2602f9, type: 3}
-  cameraObject: {fileID: 0}
 --- !u!114 &855401869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14120,7 +14139,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1831412868}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SubmissionChooseMovesScene.SubmissionChooseMovesUIManager,
           Assembly-CSharp
         m_MethodName: SubmitMoves
@@ -15707,8 +15726,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1562880860}
   m_HandleRect: {fileID: 1562880859}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.2857143
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -19174,7 +19193,6 @@ GameObject:
   - component: {fileID: 1336123645}
   - component: {fileID: 1336123648}
   - component: {fileID: 1336123647}
-  - component: {fileID: 1336123646}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -19191,36 +19209,16 @@ RectTransform:
   m_GameObject: {fileID: 1336123644}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 8.225, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1202161436}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 300}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &1336123646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1336123644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d0ebb1057844b8eadbb58457b72688c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  submitButton: {fileID: 0}
-  backButton: {fileID: 0}
-  slotPrefab: {fileID: 8179893902645950439, guid: 4200755a6fad9b4488d5a099d0070fbc, type: 3}
-  topPrefab: {fileID: 2013093237761964102, guid: 1430e32d902868a45a7a041bd494fcdf, type: 3}
-  database: {fileID: 0}
-  listPost: {fileID: 231759461}
-  source: {fileID: 0}
-  volumeSlider: {fileID: 0}
 --- !u!114 &1336123647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19234,7 +19232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
-  m_VerticalFit: 0
+  m_VerticalFit: 2
 --- !u!114 &1336123648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19252,11 +19250,11 @@ MonoBehaviour:
     m_Right: 20
     m_Top: 20
     m_Bottom: 20
-  m_ChildAlignment: 0
+  m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 1620, y: 200}
-  m_Spacing: {x: 24, y: 12}
+  m_CellSize: {x: 1100, y: 150}
+  m_Spacing: {x: 24, y: 24}
   m_Constraint: 1
   m_ConstraintCount: 1
 --- !u!1001 &1339982058
@@ -26226,6 +26224,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c5718a40814633addf063eb96db4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 796823102}
+  queueScrollContent: {fileID: 231759461}
+  optionScrollContent: {fileID: 1336123644}
+  moveQueuePrefab: {fileID: 7878639014724312263, guid: 03c307f9134b79b47badc35ebfd6762e, type: 3}
+  moveOptionPrefab: {fileID: 6922480957653236158, guid: 0ac611cf69d36454e99028e6f320b345, type: 3}
 --- !u!1001 &1836192796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30195,7 +30198,7 @@ GameObject:
   - component: {fileID: 2055899388}
   - component: {fileID: 2055899387}
   m_Layer: 5
-  m_Name: SelectionHolder
+  m_Name: MoveOptions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30299,7 +30302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2061553781}
   m_Layer: 5
-  m_Name: MoveSelection
+  m_Name: MoveQueue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31333,7 +31336,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1831412868}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SubmissionChooseMovesScene.SubmissionChooseMovesUIManager,
           Assembly-CSharp
         m_MethodName: CancelMoves

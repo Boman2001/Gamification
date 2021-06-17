@@ -1,6 +1,8 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.Events;
 
 
 namespace Universal.Entities.Humanoids {
@@ -9,15 +11,22 @@ namespace Universal.Entities.Humanoids {
 
         public int coins;
         
-        public string[] animationQueue;
+        public List<string> animationQueue;
         public Inventory.Inventory inventory;
+
+        public UnityEvent onAnimationCompleted;
         
         public Animator animator;
         public int repeatAnimationFor = 1;
-        
+
         public void PlayAnimations() {
             
             this.StartCoroutine(nameof(this.WorkAnimationQueue));
+        }
+
+        public void StopAnimations() {
+            
+            this.StopCoroutine(nameof(this.WorkAnimationQueue));
         }
 
         private IEnumerator WorkAnimationQueue() {
@@ -36,6 +45,8 @@ namespace Universal.Entities.Humanoids {
                     )
                     * this.repeatAnimationFor
                 );
+                
+                //this.onAnimationCompleted.Invoke();
             }
             
             this.animator.Play("Idle");
