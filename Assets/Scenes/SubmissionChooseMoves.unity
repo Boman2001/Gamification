@@ -14139,7 +14139,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1831412868}
         m_TargetAssemblyTypeName: SubmissionChooseMovesScene.SubmissionChooseMovesUIManager,
           Assembly-CSharp
         m_MethodName: SubmitMoves
@@ -31336,7 +31336,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1831412868}
         m_TargetAssemblyTypeName: SubmissionChooseMovesScene.SubmissionChooseMovesUIManager,
           Assembly-CSharp
         m_MethodName: CancelMoves

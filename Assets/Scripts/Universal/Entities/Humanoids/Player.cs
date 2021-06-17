@@ -41,7 +41,7 @@ namespace Universal.Entities.Humanoids {
                     
                     (
                         animStateInfo.length 
-                        + animStateInfo.normalizedTime
+                        * animStateInfo.normalizedTime
                     )
                     * this.repeatAnimationFor
                 );
