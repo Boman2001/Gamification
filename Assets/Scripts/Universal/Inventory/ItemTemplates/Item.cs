@@ -1,9 +1,9 @@
-using Entities.Humanoids;
-
 using UnityEngine;
 
+using Universal.Entities.Humanoids;
 
-namespace Inventory.ItemTemplates {
+
+namespace Universal.Inventory.ItemTemplates {
     
     [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
     public class Item : ScriptableObject {
