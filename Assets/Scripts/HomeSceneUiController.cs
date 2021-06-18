@@ -15,17 +15,6 @@ public class HomeSceneUiController : MonoBehaviour
     [FormerlySerializedAs("ChangeSubmissionButton")] [SerializeField]
     public Button changeSubmissionButton;
     
-    [FormerlySerializedAs("LibraryButton")] [SerializeField]
-    public Button libraryButton;
-    
-    [FormerlySerializedAs("VotingButton")] [SerializeField]
-    public Button votingButton;
-    
-    [FormerlySerializedAs("LogoutButton")] [SerializeField]
-    public Button logoutButton;
-    
-    [FormerlySerializedAs("SettingsButton")] [SerializeField]
-    public Button settingsButton;
     
     [SerializeField]
     public TMP_Text matchText;
@@ -42,37 +31,40 @@ public class HomeSceneUiController : MonoBehaviour
             StartCoroutine(CoRoutineSubmissionStub());
         }
         
-        changeSubmissionButton.onClick.AddListener(() =>
-        {
-            switch(DataStorageManager.Instance.PlayerType) {
-            
-                case PlayerType.Hearing:
-                    SceneManager.LoadScene(!MatchFound || DataStorageManager.Instance.SubmissionSent ? "SubmissionCreateCharacter" : "ConfirmSubmissionScene");
-                    return;
-
-                case PlayerType.Seight:
-                    SceneManager.LoadScene(!MatchFound || DataStorageManager.Instance.SubmissionSent ? "AvatarVisuallyIImpaired" : "ConfirmSubmissionScene");
-                    return;  
-            }
-        });
-        
-        settingsButton.onClick.AddListener(() =>
-        {
-            SceneManager.LoadScene("Settings");
-        });
-        
-        logoutButton.onClick.AddListener(() =>
-        {
-            PlayerPrefs.DeleteAll();
-            SceneManager.LoadScene("Register");
-        });
-        libraryButton.onClick.AddListener( () => { SceneManager.LoadScene("Library"); });
-        votingButton.onClick.AddListener( () => { });
-
         if (DataStorageManager.Instance.SubmissionSent)
         {
             matchText.text = "Inzending Verstuurd";
         }
+    }
+
+    public void SubmissionBehavior()
+    {
+        switch(DataStorageManager.Instance.PlayerType) {
+            
+            case PlayerType.Hearing:
+                SceneManager.LoadScene(!MatchFound || DataStorageManager.Instance.SubmissionSent ? "SubmissionCreateCharacter" : "ConfirmSubmissionScene");
+                return;
+
+            case PlayerType.Seight:
+                SceneManager.LoadScene(!MatchFound || DataStorageManager.Instance.SubmissionSent ? "AvatarVisuallyIImpaired" : "ConfirmSubmissionScene");
+                return;  
+        }
+    }
+
+    public void LogoutBehaviour()
+    {
+        PlayerPrefs.DeleteAll();
+        SceneManager.LoadScene("Register");
+    }
+    public void NavigateToSettings()
+    {
+        SceneManager.LoadScene("Settings");
+
+    }
+
+    public void NavigateToLibrary()
+    {
+        SceneManager.LoadScene("Library");
     }
 
     IEnumerator CoRoutineSubmissionStub()
@@ -82,4 +74,6 @@ public class HomeSceneUiController : MonoBehaviour
         matchText.text = "Match gevonden";
         MatchFound = true;
     }
+    
+    
 }

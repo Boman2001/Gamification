@@ -379,10 +379,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef096dccd68002741b17c693c66d85bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hearingImpairedButton: {fileID: 228436599}
-  sightImpairedButton: {fileID: 2096985119}
-  userButton: {fileID: 579300553}
-  accountButton: {fileID: 1198328211}
   emailInput: {fileID: 2095754715}
   nameInput: {fileID: 1128461674}
   passwordInput: {fileID: 1601999046}
@@ -482,7 +478,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 228436600}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 142102491}
+        m_TargetAssemblyTypeName: RegisterSceneUiController, Assembly-CSharp
+        m_MethodName: HearingBehavior
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &228436600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -879,7 +887,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 579300554}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 142102491}
+        m_TargetAssemblyTypeName: RegisterSceneUiController, Assembly-CSharp
+        m_MethodName: UserBehavior
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &579300554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1705,7 +1725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 323016031147824745, guid: 91227a4301260ac43b1a6f37eda94f9f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -437.38055
+      value: -437.3806
       objectReference: {fileID: 0}
     - target: {fileID: 323016031147824745, guid: 91227a4301260ac43b1a6f37eda94f9f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2118,7 +2138,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1198328212}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 142102491}
+        m_TargetAssemblyTypeName: RegisterSceneUiController, Assembly-CSharp
+        m_MethodName: AccountBehavior
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1198328212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3973,7 +4005,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2096985120}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 142102491}
+        m_TargetAssemblyTypeName: RegisterSceneUiController, Assembly-CSharp
+        m_MethodName: SightBehavior
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2096985120
 MonoBehaviour:
   m_ObjectHideFlags: 0

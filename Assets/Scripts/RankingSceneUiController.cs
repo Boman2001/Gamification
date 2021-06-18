@@ -7,17 +7,9 @@ using UnityEngine.UI;
 
 public class RankingSceneUiController : MonoBehaviour
 {
-    [FormerlySerializedAs("BackButton")] [SerializeField]
-    public Button backButton;
-    void Start()
-    {
-        backButton.onClick.AddListener( () => { SceneManager.LoadScene("Library"); });
-    }
 
-
-    // Update is called once per frame
-    void Update()
+    public void navigateBack()
     {
-        
+        SceneManager.LoadScene("Library");
     }
 }

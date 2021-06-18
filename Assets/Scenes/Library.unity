@@ -205,7 +205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 34008517}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 925393626}
+        m_TargetAssemblyTypeName: LibrarySceneUiController, Assembly-CSharp
+        m_MethodName: navigateToRanking
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &34008517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,7 +385,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -342.05646}
+  m_AnchoredPosition: {x: 0, y: -342.0564}
   m_SizeDelta: {x: 722.843, y: 150.073}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &224044169
@@ -419,7 +431,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 224044170}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 925393626}
+        m_TargetAssemblyTypeName: LibrarySceneUiController, Assembly-CSharp
+        m_MethodName: navigateToInventory
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &224044170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,7 +640,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 655346954}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 925393626}
+        m_TargetAssemblyTypeName: LibrarySceneUiController, Assembly-CSharp
+        m_MethodName: navigateToShop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &655346954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -741,11 +777,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa2d6723e0de884983e4469b40169f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryButton: {fileID: 224044169}
-  shopButton: {fileID: 655346953}
-  backButton: {fileID: 1128081877}
-  performanceButton: {fileID: 1516080187}
-  rankingButton: {fileID: 34008516}
 --- !u!4 &925393627
 Transform:
   m_ObjectHideFlags: 0
@@ -1044,7 +1075,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1128081878}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 925393626}
+        m_TargetAssemblyTypeName: LibrarySceneUiController, Assembly-CSharp
+        m_MethodName: navigateToHome
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1128081878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1379,7 +1422,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1516080188}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 925393626}
+        m_TargetAssemblyTypeName: LibrarySceneUiController, Assembly-CSharp
+        m_MethodName: navigateToPreformances
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1516080188
 MonoBehaviour:
   m_ObjectHideFlags: 0

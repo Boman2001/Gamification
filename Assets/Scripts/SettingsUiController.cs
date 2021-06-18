@@ -13,9 +13,7 @@ public class SettingsUiController : MonoBehaviour
     
     [FormerlySerializedAs("VolumeTestButton")] [SerializeField]
     public Button VolumeTest;
-    
-    [FormerlySerializedAs("BackButton")] [SerializeField]
-    public Button backButton;
+
     
     [FormerlySerializedAs("AudioSource")] [SerializeField]
     public AudioSource audioSource;
@@ -26,8 +24,6 @@ public class SettingsUiController : MonoBehaviour
     {
         isPLaying = false;
         volumeSlider.value = DataStorageManager.Instance.Volume;
-        VolumeTest.onClick.AddListener(() => { TestAudio(); });
-        backButton.onClick.AddListener(() => { SceneManager.LoadScene("Home");});
         volumeSlider.value = DataStorageManager.Instance.Volume;
     }
 
@@ -36,8 +32,13 @@ public class SettingsUiController : MonoBehaviour
     {
         
     }
-    
-    void TestAudio()
+
+    public void NavigateBack()
+    {
+        SceneManager.LoadScene("Home");
+    }
+
+    public void TestAudio()
     {
         if (isPLaying == false)
         {
