@@ -1083,7 +1083,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -145.109, y: -82.407}
+  m_AnchoredPosition: {x: -145.109, y: -82.40698}
   m_SizeDelta: {x: 565.08, y: 121.697}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &876666724
@@ -1245,7 +1245,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 994150418}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2029304644}
+        m_TargetAssemblyTypeName: PerformanceSceneUiController, Assembly-CSharp
+        m_MethodName: navigateBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &994150418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1301,7 +1313,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 311.724, y: -79.274}
+  m_AnchoredPosition: {x: 311.724, y: -79.27405}
   m_SizeDelta: {x: 239.694, y: 115.424}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1262741085
@@ -1338,7 +1350,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -145.10887, y: -511.33304}
+  m_AnchoredPosition: {x: -145.10887, y: -511.333}
   m_SizeDelta: {x: 565.08, y: 121.697}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1262741087
@@ -1856,7 +1868,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a922aa5bf50a97b4b80f56c9957e06e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backButton: {fileID: 994150417}
 --- !u!4 &2029304645
 Transform:
   m_ObjectHideFlags: 0

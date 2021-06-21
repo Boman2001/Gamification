@@ -7,35 +7,33 @@ using UnityEngine.UI;
 
 public class LibrarySceneUiController : MonoBehaviour
 {
-    [FormerlySerializedAs("InventoryButton")] [SerializeField]
-    public Button inventoryButton;
-    
-    [FormerlySerializedAs("ShopButton")] [SerializeField]
-    public Button shopButton;
-    
-    [FormerlySerializedAs("BackButton")] [SerializeField]
-    public Button backButton;
-    
-    [FormerlySerializedAs("PerformancesButton")] [SerializeField]
-    public Button performanceButton;
-    
-    [FormerlySerializedAs("RankingsBUtton")] [SerializeField]
-    public Button rankingButton;
-    
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        inventoryButton.onClick.AddListener(() => { SceneManager.LoadScene("Inventory"); });
-        shopButton.onClick.AddListener( () => { SceneManager.LoadScene("Shop"); });
-        backButton.onClick.AddListener( () => { SceneManager.LoadScene("Home"); });
-        performanceButton.onClick.AddListener( () => { SceneManager.LoadScene("Performances"); });
-        rankingButton.onClick.AddListener( () => { SceneManager.LoadScene("Ranking"); });
-    }
 
+
+    // Start is called before the first frame update
     // Update is called once per frame
-    void Update()
+    public void navigateToInventory()
     {
-        
+        SceneManager.LoadScene("Inventory");
     }
+    
+    public void navigateToShop()
+    {
+        SceneManager.LoadScene("Shop");
+    }
+    
+    public void navigateToHome()
+    {
+        SceneManager.LoadScene("Home");
+    }
+    
+    public void navigateToPreformances()
+    {
+        SceneManager.LoadScene("Performances");
+    }
+    
+    public void navigateToRanking()
+    {
+        SceneManager.LoadScene("Ranking");
+    }
+    
 }

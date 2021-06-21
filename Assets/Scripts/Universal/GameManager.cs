@@ -1,12 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
 
-    private void Awake() {
+namespace Universal {
+    public class GameManager : MonoBehaviour {
 
-        Application.targetFrameRate = 144;
+        private void Awake() {
+
+            Application.targetFrameRate = 144;
+        }
     }
 }

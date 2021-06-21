@@ -1,4 +1,4 @@
-﻿namespace Inventory.Equipping.Enums {
+﻿namespace Universal.Inventory.Equipping.Enums {
     
     public enum EquipmentLocation {
         
@@ -7,6 +7,7 @@
         TWO_HANDED,
         
         HEAD,
+        FACE,
         CHEST,
         
         LEFT_LEG,

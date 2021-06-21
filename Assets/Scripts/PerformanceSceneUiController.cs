@@ -7,11 +7,8 @@ using UnityEngine.UI;
 
 public class PerformanceSceneUiController : MonoBehaviour
 {
-    [FormerlySerializedAs("BackButton")] [SerializeField]
-    public Button backButton;
     void Start()
     {
-        backButton.onClick.AddListener( () => { SceneManager.LoadScene("Library"); });
     }
 
 
@@ -19,5 +16,10 @@ public class PerformanceSceneUiController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void navigateBack()
+    {
+        SceneManager.LoadScene("Library");
     }
 }

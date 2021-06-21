@@ -1,12 +1,10 @@
-﻿using Entities.Humanoids;
+﻿using UnityEngine;
 
-using Inventory.Equipping;
-using Inventory.Equipping.Enums;
-
-using UnityEngine;
+using Universal.Entities.Humanoids;
+using Universal.Inventory.Equipping.Enums;
 
 
-namespace Inventory.ItemTemplates.Equipable {
+namespace Universal.Inventory.ItemTemplates.Equipable {
     
     [CreateAssetMenu(fileName = "New Equipable", menuName = "Inventory/Equipable")]
     public class EquipableItem : Item {

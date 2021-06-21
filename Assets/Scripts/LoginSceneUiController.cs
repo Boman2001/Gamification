@@ -16,18 +16,6 @@ using UnityEngine.UI;
 
 public class LoginSceneUiController : MonoBehaviour
 {
-    [FormerlySerializedAs("HearingImpairedButton")] [SerializeField]
-    public Button hearingImpairedButton;
-    
-    [FormerlySerializedAs("SightImpairedButton")] [SerializeField]
-    public Button sightImpairedButton;
-    
-    [FormerlySerializedAs("VisitorButton")] [SerializeField]
-    public Button userButton;
-    
-    [FormerlySerializedAs("BackButton")] [SerializeField]
-    public Button backButton;
-    
     [FormerlySerializedAs("EmailInput")] [SerializeField]
     public TMP_InputField emailInput;
         
@@ -42,12 +30,24 @@ public class LoginSceneUiController : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         //Todo: If Token is set and valid automatically log in and continue, wss gwn een /me en als die faalt log uit
-        hearingImpairedButton.onClick.AddListener( () => { Login(ScenePref.Hearing); });
-        sightImpairedButton.onClick.AddListener( () => { Login(ScenePref.Seight); });
-        userButton.onClick.AddListener( () => { Login(ScenePref.Vistor); });
-        backButton.onClick.AddListener(() => {GoToScene(ScenePref.Account);});
     }
 
+    public void NavigateToHearingImpaired()
+    {
+        Login(ScenePref.Hearing);
+    }
+    public void NavigateToSightImpaired()
+    {
+        Login(ScenePref.Sight);
+    }
+    public void NavigateToUser()
+    {
+        Login(ScenePref.Vistor);
+    }
+    public void NavigateToAccount()
+    {
+        Login(ScenePref.Account);
+    }
     void Login(ScenePref scenePref)
     {
         var loginDto = new LoginDto()
@@ -99,7 +99,7 @@ public class LoginSceneUiController : MonoBehaviour
     enum ScenePref
     {
         Hearing,
-        Seight,
+        Sight,
         Vistor,
         Staff,
         Account
@@ -116,7 +116,7 @@ public class LoginSceneUiController : MonoBehaviour
                 DataStorageManager.Instance.PlayerType = PlayerType.Hearing;
                 SceneManager.LoadScene("Home");
                 break;
-            case ScenePref.Seight:
+            case ScenePref.Sight:
                 DataStorageManager.Instance.PlayerType = PlayerType.Seight;
                 SceneManager.LoadScene("Home");
                 break;
