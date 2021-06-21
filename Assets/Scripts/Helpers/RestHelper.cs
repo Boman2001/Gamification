@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using Config;
 using Newtonsoft.Json.Linq;
@@ -11,16 +10,16 @@ namespace Helpers
 {
     public class RestHelper : MonoBehaviour
     {
-        IEnumerator Post(string url, string bodyJsonString)
+        private IEnumerator Post(string url, string bodyJsonString)
         {
             var request = new UnityWebRequest(ServerConfig.API_URL + url, "POST");
             var bodyRaw = Encoding.UTF8.GetBytes(bodyJsonString);
-            request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
-            request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
             yield return request.SendWebRequest();
-        
-            if  (request.isNetworkError || request.isHttpError)
+
+            if (request.isNetworkError || request.isHttpError)
             {
                 var responseText = request.downloadHandler.text;
                 try
@@ -45,15 +44,18 @@ namespace Helpers
                 }
             }
         }
-        
-        IEnumerator Get(string url)
+
+        private IEnumerator Get(string url)
         {
-            var request = new UnityWebRequest(ServerConfig.API_URL + url, "GET");
-            request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
+            var request = new UnityWebRequest(ServerConfig.API_URL + url, "GET")
+            {
+                downloadHandler = new DownloadHandlerBuffer(),
+            };
+
             request.SetRequestHeader("Content-Type", "application/json");
             yield return request.SendWebRequest();
-        
-            if  (request.isNetworkError || request.isHttpError)
+
+            if (request.isNetworkError || request.isHttpError)
             {
                 var responseText = request.downloadHandler.text;
                 try
@@ -78,17 +80,17 @@ namespace Helpers
                 }
             }
         }
-        
-        IEnumerator Put(string url, string bodyJsonString)
+
+        private IEnumerator Put(string url, string bodyJsonString)
         {
             var request = new UnityWebRequest(ServerConfig.API_URL + url, "POST");
             var bodyRaw = Encoding.UTF8.GetBytes(bodyJsonString);
-            request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
-            request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
             yield return request.SendWebRequest();
-        
-            if  (request.isNetworkError || request.isHttpError)
+
+            if (request.isNetworkError || request.isHttpError)
             {
                 var responseText = request.downloadHandler.text;
                 try
@@ -113,14 +115,18 @@ namespace Helpers
                 }
             }
         }
-        IEnumerator Delete(string url)
+
+        private IEnumerator Delete(string url)
         {
-            var request = new UnityWebRequest(ServerConfig.API_URL + url, "DELETE");
-            request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
+            var request = new UnityWebRequest(ServerConfig.API_URL + url, "DELETE")
+            {
+                downloadHandler = new DownloadHandlerBuffer(),
+            };
+            
             request.SetRequestHeader("Content-Type", "application/json");
             yield return request.SendWebRequest();
-        
-            if  (request.isNetworkError || request.isHttpError)
+
+            if (request.isNetworkError || request.isHttpError)
             {
                 var responseText = request.downloadHandler.text;
                 try
