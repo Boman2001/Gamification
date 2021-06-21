@@ -2178,8 +2178,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songs:
   - id: 0
-    title: Macarena
-    song: {fileID: 8300000, guid: ce0c478e660b33f41b9acc4da9070d82, type: 3}
+    title: Anachronist
+    song: {fileID: 8300000, guid: ed148b5f3e7de974f9a45e51dd52e7d9, type: 3}
+  - id: 1
+    title: Brightly Fancy
+    song: {fileID: 8300000, guid: f7d138aedbe21ba4c94cefe6fcbc0298, type: 3}
+  - id: 2
+    title: Crunk Knight
+    song: {fileID: 8300000, guid: d52b26cc6654dfe49afdf433d4f188b4, type: 3}
+  - id: 3
+    title: First Call
+    song: {fileID: 8300000, guid: 8c6dd13f138dda045b98649f7180b3da, type: 3}
 --- !u!4 &1328292560
 Transform:
   m_ObjectHideFlags: 0
